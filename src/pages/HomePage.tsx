@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { ChallengeCard } from '../features/challenges/ChallengeCard'
-import { mockChallenges } from '../features/challenges/mockChallenges'
+import { listChallenges } from '../features/challenges/services/challengeService'
 
 export function HomePage() {
-  const featured = mockChallenges.filter(
+  const featured = listChallenges().filter(
     (challenge) => challenge.status === 'open'
   )
 

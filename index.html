@@ -4,7 +4,36 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>clicksportbr</title>
+    <title>ClicksportBR | Desafios esportivos virtuais</title>
+    <meta name="description" content="Conheça os desafios esportivos virtuais da ClicksportBR e encontre sua próxima meta." />
+
+    <script>
+      (() => {
+        let preference = 'auto'
+
+        try {
+          preference =
+            localStorage.getItem('clicksportbr-theme') || 'auto'
+        } catch {
+          // Usa a preferência automática.
+        }
+
+        const systemDark = matchMedia(
+          '(prefers-color-scheme: dark)'
+        ).matches
+
+        const theme =
+          preference === 'light' || preference === 'dark'
+            ? preference
+            : systemDark
+              ? 'dark'
+              : 'light'
+
+        document.documentElement.dataset.theme = theme
+        document.documentElement.style.colorScheme = theme
+      })()
+    </script>
+
   </head>
   <body>
     <div id="root"></div>

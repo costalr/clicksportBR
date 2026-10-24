@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { ChallengeCard } from './ChallengeCard'
-import { mockChallenges } from './mockChallenges'
+import { listChallenges } from './services/challengeService'
 import type { ChallengeModality } from './types'
 
 type ModalityFilter = 'Todas' | ChallengeModality
@@ -20,7 +20,7 @@ export function ChallengeCatalog() {
   const filteredChallenges = useMemo(() => {
     const term = normalizeText(search)
 
-    return mockChallenges.filter((challenge) => {
+    return listChallenges().filter((challenge) => {
       const matchesName = normalizeText(challenge.name).includes(term)
       const matchesModality =
         modality === 'Todas' || challenge.modality === modality

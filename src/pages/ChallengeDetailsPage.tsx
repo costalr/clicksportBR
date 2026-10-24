@@ -1,13 +1,11 @@
 import { Link, useParams } from 'react-router-dom'
-import { mockChallenges } from '../features/challenges/mockChallenges'
+import { getChallengeBySlug } from '../features/challenges/services/challengeService'
 import { statusLabels } from '../features/challenges/types'
 
 export function ChallengeDetailsPage() {
   const { slug } = useParams()
 
-  const challenge = mockChallenges.find(
-    (item) => item.slug === slug
-  )
+  const challenge = getChallengeBySlug(slug)
 
   if (!challenge) {
     return (

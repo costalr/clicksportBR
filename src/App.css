@@ -373,3 +373,91 @@
     padding-inline: 48px;
   }
 }
+
+/* Rodada 2: acessibilidade e navegação responsiva */
+
+.mobile-menu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.main-nav {
+  display: none;
+}
+
+.main-nav.menu-open {
+  display: flex;
+}
+
+.main-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.theme-switcher select {
+  min-height: 44px;
+}
+
+.button-primary:not(:disabled):hover {
+  filter: brightness(0.9);
+}
+
+.button-secondary:hover,
+.modality-filters button:not(.filter-active):hover {
+  border-color: var(--color-primary);
+}
+
+.challenge-card {
+  transition: border-color 160ms ease;
+}
+
+.challenge-card:hover {
+  border-color: var(--color-primary);
+}
+
+.empty-state {
+  width: 100%;
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+main.empty-state {
+  margin-block: auto;
+}
+
+.catalog-filters input::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-button {
+    display: none;
+  }
+
+  .main-nav,
+  .main-nav.menu-open {
+    display: flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .challenge-card {
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
