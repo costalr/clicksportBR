@@ -1,3 +1,9 @@
+import { PasswordRecoveryPage } from './pages/PasswordRecoveryPage'
+import { ResetPasswordPage } from './pages/ResetPasswordPage'
+import { AuthGate } from './features/auth/AuthGate'
+import { AuthPage } from './pages/AuthPage'
+import { AdminDashboardPage } from './pages/AdminDashboardPage'
+import { ParticipantDashboardPage } from './pages/ParticipantDashboardPage'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import { Header } from './components/layout/Header'
 import { useTheme } from './hooks/useTheme'
@@ -15,6 +21,11 @@ function App() {
         <Header theme={preference} onThemeChange={changeTheme} />
 
         <Routes>
+          <Route path="/recuperar-senha" element={<PasswordRecoveryPage />} />
+          <Route path="/redefinir-senha" element={<ResetPasswordPage />} />
+          <Route path="/entrar" element={<AuthPage />} />
+          <Route path="/admin" element={<AuthGate admin><AdminDashboardPage /></AuthGate>} />
+          <Route path="/minha-area" element={<AuthGate><ParticipantDashboardPage /></AuthGate>} />
           <Route path="/" element={<HomePage />} />
           <Route path="/desafios" element={<ChallengesPage />} />
           <Route

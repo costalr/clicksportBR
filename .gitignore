@@ -35,3 +35,6 @@ __pycache__/
 # Editores
 .idea/
 .vscode/
+
+# Configuração local
+.env.local

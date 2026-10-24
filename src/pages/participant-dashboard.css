@@ -1,0 +1,245 @@
+.participant-page {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 3rem auto 5rem;
+}
+
+.participant-heading,
+.participant-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.participant-heading {
+  margin-bottom: 2rem;
+}
+
+.participant-heading h1 {
+  margin: 0.35rem 0;
+}
+
+.participant-heading p,
+.participant-panel-header p,
+.participant-note {
+  color: var(--color-text-muted, inherit);
+}
+
+.participant-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.participant-demo,
+.participant-status,
+.participant-pending {
+  display: inline-block;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.participant-panel {
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 1rem;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  margin-bottom: 1.5rem;
+}
+
+.participant-panel h2 {
+  margin: 0.4rem 0;
+}
+
+.participant-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 2rem 0 1.5rem;
+}
+
+.participant-metrics > div {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.participant-metrics span,
+.participant-note {
+  font-size: 0.9rem;
+}
+
+.participant-metrics strong {
+  font-size: 1.1rem;
+}
+
+.participant-progress {
+  height: 0.8rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(128, 128, 128, 0.25);
+}
+
+.participant-progress > div {
+  width: 64%;
+  height: 100%;
+  background: #21a67a;
+  border-radius: inherit;
+}
+
+.participant-upload {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 1px dashed currentColor;
+  border-radius: 0.8rem;
+  cursor: pointer;
+}
+
+.participant-upload input {
+  max-width: 100%;
+}
+
+.participant-feedback {
+  font-weight: 600;
+}
+
+.participant-evidence-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.participant-evidence-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 650px) {
+  .participant-heading,
+  .participant-panel-header,
+  .participant-evidence-list li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .participant-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+.participant-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.participant-breadcrumb a {
+  color: inherit;
+}
+
+.participant-upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 2rem 1rem;
+  margin: 1.5rem 0;
+  border: 2px dashed rgba(128, 128, 128, 0.45);
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.participant-upload-icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(128, 128, 128, 0.15);
+  font-size: 1.7rem;
+}
+
+.participant-upload-area input {
+  max-width: 100%;
+}
+
+.participant-selected {
+  overflow-wrap: anywhere;
+}
+
+.participant-submit {
+  border: 0;
+  border-radius: 0.6rem;
+  padding: 0.85rem 1.2rem;
+  background: #21a67a;
+  color: #081c16;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.participant-submit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.participant-list-heading {
+  margin-top: 2rem;
+}
+
+.participant-file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.participant-file-info span {
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.participant-evidence-status {
+  flex-shrink: 0;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.participant-pendente {
+  background: rgba(234, 179, 8, 0.15);
+  color: #d6a400;
+}
+
+.participant-aprovado {
+  background: rgba(34, 197, 94, 0.15);
+  color: #21a67a;
+}
+
+.participant-rejeitado {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef6666;
+}
+
+@media (max-width: 650px) {
+  .participant-upload-area {
+    align-items: stretch;
+  }
+
+  .participant-evidence-status {
+    align-self: flex-start;
+  }
+}
