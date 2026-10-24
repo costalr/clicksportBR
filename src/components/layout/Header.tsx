@@ -1,3 +1,4 @@
+import './header.css'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { ThemeSwitcher } from '../ui/ThemeSwitcher'

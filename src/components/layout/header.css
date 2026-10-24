@@ -1,0 +1,152 @@
+/* Layout principal do cabeçalho */
+
+.app-header {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.brand {
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 900;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand span {
+  color: var(--color-primary);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.theme-switcher {
+  display: flex;
+  align-items: center;
+}
+
+.theme-switcher label {
+  display: none;
+}
+
+.theme-switcher select {
+  width: 110px;
+  min-height: 44px;
+  padding: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.mobile-menu-button {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.main-nav,
+.main-nav:not(.menu-open) {
+  display: none;
+}
+
+.main-nav.menu-open {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding-top: 12px;
+}
+
+.main-nav a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.main-nav a.active {
+  color: var(--color-primary);
+}
+
+@media (max-width: 360px) {
+  .app-header {
+    padding-inline: 10px;
+  }
+
+  .brand {
+    font-size: 14px;
+  }
+
+  .theme-switcher select {
+    width: 96px;
+  }
+
+  .mobile-menu-button {
+    padding-inline: 8px;
+  }
+}
+
+@media (min-width: 768px) {
+  .app-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 20px 48px;
+  }
+
+  .header-main {
+    display: contents;
+  }
+
+  .brand {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .main-nav,
+  .main-nav:not(.menu-open),
+  .main-nav.menu-open {
+    display: flex;
+    flex-direction: row;
+    grid-column: 2;
+    grid-row: 1;
+    gap: 20px;
+    width: auto;
+    padding: 0;
+  }
+
+  .header-actions {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .mobile-menu-button {
+    display: none;
+  }
+
+  .theme-switcher label {
+    display: inline;
+    margin-right: 8px;
+  }
+}
