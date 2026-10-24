@@ -206,3 +206,29 @@ A definição de indicadores comerciais, metas de desempenho e critérios quanti
 ---
 
 **Próxima etapa:** levantamento detalhado de requisitos funcionais, não funcionais e regras de negócio, seguido da definição dos fluxos de navegação e da direção visual.
+
+## Atualização de requisitos — 24/10/2026
+
+O levantamento respondido por Marcelo confirmou:
+
+- Lançamento com desafios individuais de corrida.
+- Comprovantes enviados por upload no próprio site.
+- Validação pelo gestor com apoio do sistema.
+- Pagamentos via PIX e cartão de crédito.
+- Inscrição, medalha, camiseta e frete no pagamento.
+- Kits enviados por transportadora contratada.
+- Administração inicial realizada somente por Marcelo.
+- Público inicial estimado entre 51 e 200 participantes.
+
+O prazo foi descrito como iniciado na inscrição,
+mas o marco exato depende de confirmação.
+
+A política de reembolso e os critérios de validação
+ainda não estão definidos.
+
+As decisões pendentes estão registradas em
+`docs/02-requisitos/levantamento-marcelo-2026-10-24.md`.
+
+A arquitetura deve permitir múltiplos comprovantes
+por inscrição sem pressupor que sua acumulação
+seja uma regra comercial aprovada.
