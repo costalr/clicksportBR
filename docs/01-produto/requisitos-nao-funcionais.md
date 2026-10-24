@@ -99,3 +99,16 @@ serão definidos durante a arquitetura.
 | Versão | Alteração |
 |---|---|
 | 0.1 | Definição inicial dos requisitos não funcionais |
+
+## RNF-011 — Temas e preferências visuais
+
+A aplicação deverá oferecer temas claro e escuro,
+com seleção automática conforme a preferência
+do dispositivo e possibilidade de escolha manual.
+
+Critérios de verificação:
+- Respeitar a preferência do sistema por padrão.
+- Permitir alternar entre automático, claro e escuro.
+- Preservar a preferência manual entre visitas.
+- Manter contraste e legibilidade em ambos os temas.
+- Evitar exibição inicial com tema incorreto.

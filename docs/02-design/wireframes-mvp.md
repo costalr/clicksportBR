@@ -28,7 +28,7 @@ Rota: /desafios
 ### Estrutura
 
 1. Título e descrição da página.
-2. Busca por nome (opcional no lançamento).
+2. Busca por nome (obrigatória no MVP).
 3. Filtro simples por modalidade (opcional).
 4. Lista ou grade de desafios.
 5. Estado vazio quando não houver resultados.
@@ -44,7 +44,7 @@ Rota: /desafios
 
 ## 3. Diretrizes gerais
 
-- Priorizar dispositivos móveis.
+- Adotar mobile-first obrigatoriamente.
 - Utilizar hierarquia visual clara.
 - Dar destaque às fotografias esportivas.
 - Evitar elementos decorativos sem função.
@@ -59,3 +59,30 @@ Rota: /desafios
 - Disponibilização das fotografias.
 - Definição dos elementos de premiação.
 - Validação das regras dos desafios.
+
+## 5. Decisões de UX confirmadas
+
+### UX-001 — Mobile-first
+Todas as interfaces deverão ser projetadas inicialmente
+para dispositivos móveis, com adaptação progressiva
+para telas maiores.
+
+### UX-002 — Busca no catálogo
+A busca por nome é obrigatória desde o MVP.
+
+Deverá permitir buscas parciais, ignorar diferenças
+entre letras maiúsculas e minúsculas e apresentar
+um estado vazio quando não houver resultados.
+
+### UX-003 — Aparência
+A aplicação deverá oferecer temas claro e escuro.
+
+O comportamento padrão será acompanhar a preferência
+do sistema operacional.
+
+O usuário poderá selecionar manualmente:
+- Automático
+- Claro
+- Escuro
+
+A preferência manual deverá persistir entre visitas.
