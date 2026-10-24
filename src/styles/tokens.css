@@ -1,0 +1,51 @@
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  font-synthesis: none;
+
+  --color-primary: #f45116;
+  --color-background: #f8f9fb;
+  --color-surface: #ffffff;
+  --color-text: #171b22;
+  --color-text-secondary: #586272;
+  --color-border: #dee2e8;
+
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+:root[data-theme='dark'] {
+  --color-background: #101318;
+  --color-surface: #1b2028;
+  --color-text: #f5f7fa;
+  --color-text-secondary: #a9b2c0;
+  --color-border: #363e4a;
+}
+
+:root {
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+select {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
