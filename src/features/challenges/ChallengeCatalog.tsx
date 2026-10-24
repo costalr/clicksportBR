@@ -1,32 +1,19 @@
 import { useMemo, useState } from 'react'
 import { ChallengeCard } from './ChallengeCard'
 import { listChallenges } from './services/challengeService'
-import type { ChallengeModality } from './types'
-
-type ModalityFilter = 'Todas' | ChallengeModality
-
-function normalizeText(value: string): string {
-  return value
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLocaleLowerCase('pt-BR')
-    .trim()
-}
+import { filterChallenges } from './filterChallenges'
+import type { ModalityFilter } from './filterChallenges'
 
 export function ChallengeCatalog() {
   const [search, setSearch] = useState('')
   const [modality, setModality] = useState<ModalityFilter>('Todas')
 
   const filteredChallenges = useMemo(() => {
-    const term = normalizeText(search)
-
-    return listChallenges().filter((challenge) => {
-      const matchesName = normalizeText(challenge.name).includes(term)
-      const matchesModality =
-        modality === 'Todas' || challenge.modality === modality
-
-      return matchesName && matchesModality
-    })
+    return filterChallenges(
+      listChallenges(),
+      search,
+      modality
+    )
   }, [search, modality])
 
   function clearFilters() {
