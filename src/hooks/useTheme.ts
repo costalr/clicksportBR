@@ -2,8 +2,22 @@ import { useEffect, useState } from 'react'
 
 export type ThemePreference = 'auto' | 'light' | 'dark'
 export type ResolvedTheme = 'light' | 'dark'
+export type DarkTone = string
 
 const STORAGE_KEY = 'clicksportbr-theme'
+const DARK_TONE_KEY = 'clicksportbr-dark-tone'
+
+function readStoredDarkTone(): DarkTone {
+  try {
+    const value = localStorage.getItem(DARK_TONE_KEY)
+    if (value && /^#[0-9a-fA-F]{6}$/.test(value)) {
+      return value
+    }
+  } catch {
+    // Armazenamento indisponível.
+  }
+  return '#232323'
+}
 
 function readStoredTheme(): ThemePreference {
   try {
@@ -30,6 +44,9 @@ function systemPrefersDark(): boolean {
 }
 
 export function useTheme() {
+  const [darkTone, setDarkTone] =
+    useState<DarkTone>(readStoredDarkTone)
+
   const [preference, setPreference] =
     useState<ThemePreference>(readStoredTheme)
 
@@ -62,6 +79,22 @@ export function useTheme() {
     document.documentElement.style.colorScheme = resolvedTheme
   }, [resolvedTheme])
 
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--custom-dark-background',
+      darkTone
+    )
+  }, [darkTone])
+
+  function changeDarkTone(value: DarkTone) {
+    setDarkTone(value)
+    try {
+      localStorage.setItem(DARK_TONE_KEY, value)
+    } catch {
+      // A preferência continua válida nesta sessão.
+    }
+  }
+
   function changeTheme(value: ThemePreference) {
     setPreference(value)
 
@@ -75,6 +108,8 @@ export function useTheme() {
   return {
     preference,
     resolvedTheme,
+    darkTone,
+    changeDarkTone,
     changeTheme,
   }
 }

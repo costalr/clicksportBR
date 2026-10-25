@@ -10,9 +10,10 @@ describe('normalizeText', () => {
 
 describe('filterChallenges', () => {
   it('retorna todos os desafios sem filtros', () => {
-    expect(
-      filterChallenges(mockChallenges, '', 'Todas')
-    ).toHaveLength(3)
+    const results = filterChallenges(mockChallenges, '', 'Todas')
+
+    expect(results).toHaveLength(mockChallenges.length)
+    expect(results).toEqual(mockChallenges)
   })
 
   it('encontra desafios sem exigir acentos', () => {
@@ -44,12 +45,27 @@ describe('filterChallenges', () => {
       'Corrida'
     )
 
-    expect(results).toHaveLength(1)
+    expect(results.map((challenge) => challenge.name)).toEqual([
+      'Desafio Superação',
+      'Ultra Superação',
+    ])
+
+    expect(
+      results.every((challenge) => challenge.modality === 'Corrida')
+    ).toBe(true)
   })
 
   it('retorna lista vazia quando não encontra resultados', () => {
     expect(
       filterChallenges(mockChallenges, 'inexistente', 'Todas')
     ).toEqual([])
+  })
+
+  it('preserva os dados originais ao filtrar', () => {
+    const original = [...mockChallenges]
+
+    filterChallenges(mockChallenges, 'corrida', 'Todas')
+
+    expect(mockChallenges).toEqual(original)
   })
 })

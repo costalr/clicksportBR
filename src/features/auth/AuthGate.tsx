@@ -84,8 +84,8 @@ export function AuthGate({ children, admin = false }: AuthGateProps) {
       <main className="page-section">
         <h1>Acesso não autorizado</h1>
         <p>Esta área exige permissão administrativa.</p>
-        <Link to="/minha-area" className="button-primary">
-          Ir para minha área
+        <Link to="/desafios" className="button-primary">
+          Explorar desafios
         </Link>
       </main>
     )

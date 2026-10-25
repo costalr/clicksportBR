@@ -13,12 +13,22 @@ import { ChallengeDetailsPage } from './pages/ChallengeDetailsPage'
 import './App.css'
 
 function App() {
-  const { preference, changeTheme } = useTheme()
+  const {
+    preference,
+    changeTheme,
+    darkTone,
+    changeDarkTone,
+  } = useTheme()
 
   return (
     <BrowserRouter>
       <div className="app">
-        <Header theme={preference} onThemeChange={changeTheme} />
+        <Header
+          theme={preference}
+          onThemeChange={changeTheme}
+          darkTone={darkTone}
+          onDarkToneChange={changeDarkTone}
+        />
 
         <Routes>
           <Route path="/recuperar-senha" element={<PasswordRecoveryPage />} />

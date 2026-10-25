@@ -14,9 +14,31 @@ export function AuthPage() {
   const [message, setMessage] = useState('')
 
   const requested = params.get('retorno')
-  const retorno = requested?.startsWith('/') && !requested.startsWith('//')
-    ? requested
-    : '/minha-area'
+
+  function safeReturn(value: string | null) {
+    if (!value || !value.startsWith('/') || value.startsWith('//')
+        || value.includes('\\') || /[\\u0000-\\u001f]/.test(value)) {
+      return null
+    }
+    const path = value.split(/[?#]/, 1)[0]
+    if (path === '/entrar' || path === '/admin'
+        || path === '/recuperar-senha' || path === '/redefinir-senha') {
+      return null
+    }
+    return value
+  }
+
+  async function navigateAfterAuth() {
+    const { data, error } = await supabase.rpc('eh_administrador')
+    if (error) throw error
+
+    if (data === true) {
+      navigate('/admin', { replace: true })
+      return
+    }
+
+    navigate(safeReturn(requested) ?? '/desafios', { replace: true })
+  }
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -33,7 +55,7 @@ export function AuthPage() {
         if (error) throw error
 
         if (data.session) {
-          navigate(retorno, { replace: true })
+          await navigateAfterAuth()
         } else {
           setMessage('Cadastro realizado. Confira seu e-mail para confirmar a conta.')
         }
@@ -43,7 +65,7 @@ export function AuthPage() {
           password: senha,
         })
         if (error) throw error
-        navigate(retorno, { replace: true })
+        await navigateAfterAuth()
       }
     } catch (error) {
       setMessage(error instanceof Error ? error.message : 'Não foi possível continuar.')

@@ -1,0 +1,339 @@
+/* ClicksportBR — Glass Challenge Preview */
+
+.preview-card {
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.preview-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.13);
+}
+
+.preview-card-visual {
+  position: relative;
+  width: 100%;
+  min-height: 210px;
+  border: 0;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  cursor: pointer;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(255,85,20,.3), transparent 45%),
+    linear-gradient(135deg, #1b2029, #384352 65%, #171c24);
+}
+
+.preview-card-orbit {
+  position: absolute;
+  width: 260px;
+  height: 140px;
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 50%;
+  transform: rotate(-30deg);
+  transition: transform .4s ease;
+}
+
+.preview-card-visual:hover .preview-card-orbit {
+  transform: rotate(-10deg) scale(1.1);
+}
+
+.preview-card-visual strong {
+  font-size: clamp(60px, 7vw, 105px);
+  line-height: 1;
+  letter-spacing: -.09em;
+  text-shadow: 0 10px 30px rgba(0,0,0,.3);
+}
+
+.preview-card-visual small {
+  font-size: 18px;
+  letter-spacing: 0;
+  color: #ff8758;
+}
+
+.preview-card-hint {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.preview-card-actions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.preview-card-actions .button-secondary {
+  flex: 1;
+  width: auto;
+  margin: 0;
+}
+
+.preview-card-expand {
+  display: grid;
+  place-items: center;
+  min-width: 48px;
+  min-height: 48px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-primary);
+  background: var(--color-surface);
+  text-decoration: none;
+  font-size: 23px;
+}
+
+.challenge-preview-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(5,8,14,.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  animation: preview-fade .25s ease;
+}
+
+.challenge-preview-modal {
+  width: min(100%, 900px);
+  max-height: 90dvh;
+  overflow: auto;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 90% 0%, rgba(255,90,25,.16), transparent 48%),
+    linear-gradient(140deg, rgba(42,49,61,.96), rgba(17,22,30,.97));
+  box-shadow: 0 35px 110px rgba(0,0,0,.5);
+  backdrop-filter: blur(32px) saturate(150%);
+  -webkit-backdrop-filter: blur(32px) saturate(150%);
+  transition: width .4s ease, max-height .4s ease;
+  animation: preview-enter .35s ease;
+}
+
+.challenge-preview-modal.expanded {
+  width: min(100%, 1320px);
+  max-height: 96dvh;
+}
+
+.preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+.preview-toolbar > span,
+.preview-eyebrow {
+  color: #ff8758;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.preview-toolbar-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.preview-toolbar-buttons button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 12px;
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.preview-toolbar-buttons button:hover {
+  background: rgba(255,255,255,.16);
+}
+
+.preview-body {
+  display: grid;
+  grid-template-columns: .85fr 1fr;
+  gap: 32px;
+  padding: 24px;
+}
+
+.preview-art {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 410px;
+  padding: 26px;
+  border-radius: 22px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 65% 35%, rgba(255,90,25,.32), transparent 45%),
+    linear-gradient(145deg, #374251, #171d26);
+}
+
+.preview-art strong {
+  font-size: clamp(90px, 11vw, 165px);
+  line-height: 1;
+  letter-spacing: -.1em;
+}
+
+.preview-art strong small {
+  font-size: 22px;
+  letter-spacing: 0;
+  color: #ff8758;
+}
+
+.preview-art > span {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
+
+.preview-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px 0;
+}
+
+.preview-content h2 {
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -.05em;
+  margin: 16px 0;
+}
+
+.preview-content > p,
+.preview-extra p {
+  color: rgba(255,255,255,.7);
+  line-height: 1.7;
+}
+
+.preview-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  margin: 24px 0;
+}
+
+.preview-metrics > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 16px;
+  background: rgba(255,255,255,.07);
+  backdrop-filter: blur(14px);
+}
+
+.preview-metrics span {
+  color: rgba(255,255,255,.6);
+  font-size: 10px;
+  letter-spacing: .1em;
+}
+
+.preview-metrics strong {
+  font-size: 22px;
+}
+
+.preview-status {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.preview-status small {
+  color: rgba(255,255,255,.5);
+}
+
+.preview-extra {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,.14);
+}
+
+.preview-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 32px;
+}
+
+.preview-text-button {
+  border: 0;
+  background: transparent;
+  color: #ff8758;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@keyframes preview-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes preview-enter {
+  from { opacity: 0; transform: translateY(24px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 700px) {
+  .challenge-preview-backdrop {
+    padding: 10px;
+  }
+
+  .challenge-preview-modal,
+  .challenge-preview-modal.expanded {
+    width: 100%;
+    max-height: 94dvh;
+    border-radius: 20px;
+  }
+
+  .preview-body {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 16px;
+  }
+
+  .preview-art {
+    min-height: 210px;
+  }
+
+  .preview-art strong {
+    font-size: 90px;
+  }
+
+  .preview-content {
+    padding: 0;
+  }
+
+  .preview-toolbar {
+    padding: 12px 16px;
+  }
+
+  .challenge-preview-modal.expanded .preview-art {
+    min-height: 300px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .challenge-preview-backdrop,
+  .challenge-preview-modal,
+  .preview-card {
+    animation: none !important;
+    transition: none !important;
+  }
+}

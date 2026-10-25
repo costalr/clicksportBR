@@ -401,3 +401,122 @@ main.empty-state {
     gap: 20px;
   }
 }
+
+
+/* CLICKSPORTBR CATALOG GLASS V5 */
+
+/* Catálogo mais amplo, sem alterar páginas administrativas */
+.app:has(.catalog-filters) > main,
+.app:has(.catalog-filters) > .page-section {
+  width: min(100% - 48px, 1600px);
+  max-width: none;
+  margin-inline: auto;
+}
+
+/* Fundo atmosférico para a página do catálogo */
+.app:has(.catalog-filters) {
+  background:
+    radial-gradient(ellipse at 85% 18%, rgba(244,81,22,.09), transparent 42%),
+    radial-gradient(ellipse at 8% 78%, rgba(87,118,168,.09), transparent 48%),
+    var(--color-background);
+}
+
+/* Grade mais larga e responsiva */
+.app:has(.catalog-filters) .challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 28px);
+  width: 100%;
+}
+
+/* Busca e filtros com acabamento glass */
+.app:has(.catalog-filters) .catalog-filters {
+  padding: clamp(18px, 2vw, 28px);
+  border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--color-surface) 55%, transparent);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+}
+
+.app:has(.catalog-filters) .catalog-filters input {
+  background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+  border-radius: 12px;
+}
+
+.app:has(.catalog-filters) .challenge-card {
+  min-width: 0;
+  background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-border) 75%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+@media (max-width: 1200px) {
+  .app:has(.catalog-filters) .challenge-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 850px) {
+  .app:has(.catalog-filters) .challenge-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .app:has(.catalog-filters) > main,
+  .app:has(.catalog-filters) > .page-section {
+    width: calc(100% - 32px);
+  }
+
+  .app:has(.catalog-filters) .challenge-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* CLICKSPORTBR CATALOG WIDTH FIX V6 */
+
+/* Corrige o limite herdado de .page-section */
+.app .page-section:has(.catalog-filters) {
+  width: 100%;
+  max-width: none;
+  padding-inline: clamp(20px, 3vw, 64px);
+}
+
+/* Amplia o próprio catálogo, não apenas seu container externo */
+.app .page-section:has(.catalog-filters) > section {
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+}
+
+/* Garante que os nove eventos aproveitem o espaço */
+.app .page-section:has(.catalog-filters) .challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(16px, 1.8vw, 28px);
+}
+
+@media (max-width: 1100px) {
+  .app .page-section:has(.catalog-filters) .challenge-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .app .page-section:has(.catalog-filters) .challenge-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .app .page-section:has(.catalog-filters) {
+    padding-inline: 16px;
+  }
+
+  .app .page-section:has(.catalog-filters) .challenge-grid {
+    grid-template-columns: 1fr;
+  }
+}

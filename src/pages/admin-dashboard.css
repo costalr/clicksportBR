@@ -181,3 +181,257 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Integração administrativa real */
+.admin-refresh,
+.admin-file-link {
+  cursor: pointer;
+  font: inherit;
+  border-radius: .55rem;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text);
+  padding: .65rem .9rem;
+}
+
+.admin-file-link {
+  align-self: flex-start;
+  color: var(--color-primary, #f97316);
+}
+
+.admin-feedback,
+.admin-error {
+  padding: .9rem 1rem;
+  border-radius: .6rem;
+  margin-bottom: 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.admin-error {
+  color: #ef6666;
+}
+
+.admin-em_analise {
+  background: rgba(234,179,8,.15);
+  color: #d6a400;
+}
+
+.admin-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,.68);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.admin-review-dialog {
+  width: min(100%, 560px);
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid var(--color-border);
+  border-radius: 1.1rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 24px 90px rgba(0,0,0,.35);
+}
+
+@supports (backdrop-filter: blur(18px)) {
+  .admin-review-dialog {
+    backdrop-filter: blur(18px);
+  }
+}
+
+.admin-review-dialog h2 {
+  margin-top: 0;
+}
+
+.admin-review-dialog > p {
+  color: var(--color-text-muted);
+}
+
+.admin-decision-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  margin: 1.4rem 0;
+}
+
+.admin-decision-switch button,
+.admin-review-actions button {
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text);
+  padding: .8rem 1rem;
+  border-radius: .6rem;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+}
+
+.admin-decision-switch .selected {
+  border-color: var(--color-primary, #f97316);
+  color: var(--color-primary, #f97316);
+}
+
+.admin-review-field {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin: 1rem 0;
+  font-weight: 600;
+}
+
+.admin-review-field select,
+.admin-review-field textarea {
+  width: 100%;
+  padding: .85rem;
+  border: 1px solid var(--color-border);
+  border-radius: .6rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.admin-reason-preview {
+  padding: 1rem;
+  border-radius: .65rem;
+  background: rgba(239,68,68,.07);
+  border-left: 3px solid #ef6666;
+  font-size: .9rem;
+}
+
+.admin-reason-preview p {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.admin-review-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin-top: 1.5rem;
+}
+
+.admin-review-actions .admin-reject-confirm {
+  background: #ef6666;
+  border-color: #ef6666;
+  color: #fff;
+}
+
+.admin-review-actions button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 520px) {
+  .admin-review-actions {
+    flex-direction: column-reverse;
+  }
+  .admin-review-actions button {
+    width: 100%;
+  }
+}
+
+
+/* Motivos de rejeição — seleção personalizada */
+.admin-reason-fieldset {
+  min-width: 0;
+  margin: 1.25rem 0 1rem;
+  padding: 0;
+  border: 0;
+}
+
+.admin-reason-fieldset legend {
+  margin-bottom: .8rem;
+  padding: 0;
+  font-weight: 650;
+}
+
+.admin-reason-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .5rem;
+}
+
+.admin-reason-option {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  min-height: 46px;
+  padding: .75rem .9rem;
+  border: 1px solid var(--color-border);
+  border-radius: .65rem;
+  background: rgba(128,128,128,.035);
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease;
+}
+
+.admin-reason-option:hover {
+  border-color: var(--color-primary);
+  background: rgba(249,115,22,.045);
+}
+
+.admin-reason-option.is-selected {
+  border-color: var(--color-primary);
+  background: rgba(249,115,22,.09);
+}
+
+.admin-reason-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.admin-reason-option:focus-within {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.admin-reason-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+}
+
+.admin-reason-option.is-selected .admin-reason-indicator {
+  border-color: var(--color-primary);
+}
+
+.admin-reason-option.is-selected .admin-reason-indicator::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.admin-reason-label {
+  font-size: .92rem;
+  font-weight: 550;
+  line-height: 1.35;
+}
+
+.admin-reason-fieldset:disabled .admin-reason-option {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.admin-preview-observation {
+  padding-top: .7rem;
+  margin-top: .7rem;
+  border-top: 1px solid rgba(255,255,255,.12);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

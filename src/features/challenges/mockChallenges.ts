@@ -38,4 +38,70 @@ export const mockChallenges: Challenge[] = [
       'Um desafio para corredores que desejam trabalhar a consistência.',
     status: 'open',
   },
+
+  {
+    id: 'demo-corrida-primeiros-passos',
+    slug: 'corrida-primeiros-passos',
+    name: 'Primeiros Passos',
+    modality: 'Corrida',
+    distanceKm: 5,
+    durationDays: 15,
+    description: 'Um desafio demonstrativo de corrida para explorar novas metas, acompanhar sua evolução e conhecer a experiência ClicksportBR.',
+    status: 'soon',
+  },
+
+  {
+    id: 'demo-corrida-ritmo-constante',
+    slug: 'corrida-ritmo-constante',
+    name: 'Ritmo Constante',
+    modality: 'Corrida',
+    distanceKm: 10,
+    durationDays: 20,
+    description: 'Um desafio demonstrativo de corrida para explorar novas metas, acompanhar sua evolução e conhecer a experiência ClicksportBR.',
+    status: 'soon',
+  },
+
+  {
+    id: 'demo-corrida-novos-limites',
+    slug: 'corrida-novos-limites',
+    name: 'Novos Limites',
+    modality: 'Corrida',
+    distanceKm: 21,
+    durationDays: 30,
+    description: 'Um desafio demonstrativo de corrida para explorar novas metas, acompanhar sua evolução e conhecer a experiência ClicksportBR.',
+    status: 'soon',
+  },
+
+  {
+    id: 'demo-corrida-meia-maratona',
+    slug: 'corrida-meia-maratona',
+    name: 'Rumo aos 21K',
+    modality: 'Corrida',
+    distanceKm: 21,
+    durationDays: 45,
+    description: 'Um desafio demonstrativo de corrida para explorar novas metas, acompanhar sua evolução e conhecer a experiência ClicksportBR.',
+    status: 'soon',
+  },
+
+  {
+    id: 'demo-corrida-ultra-superacao',
+    slug: 'corrida-ultra-superacao',
+    name: 'Ultra Superação',
+    modality: 'Corrida',
+    distanceKm: 150,
+    durationDays: 90,
+    description: 'Um desafio demonstrativo de corrida para explorar novas metas, acompanhar sua evolução e conhecer a experiência ClicksportBR.',
+    status: 'soon',
+  },
+
+  {
+    id: 'demo-corrida-desafio-200',
+    slug: 'corrida-desafio-200',
+    name: 'Desafio 200K',
+    modality: 'Corrida',
+    distanceKm: 200,
+    durationDays: 90,
+    description: 'Um desafio demonstrativo de corrida para explorar novas metas, acompanhar sua evolução e conhecer a experiência ClicksportBR.',
+    status: 'soon',
+  },
 ]

@@ -243,3 +243,767 @@
     align-self: flex-start;
   }
 }
+
+/* Formulário de envio — ClicksportBR */
+
+.participant-upload-area {
+  align-items: stretch;
+  text-align: left;
+  gap: 1.5rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: rgba(128, 128, 128, 0.035);
+}
+
+.upload-heading h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.25rem;
+}
+
+.upload-heading p {
+  margin: 0;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.upload-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.upload-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.upload-fields input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 0.65rem;
+  background: var(--color-surface, transparent);
+  color: inherit;
+  font: inherit;
+  font-weight: 400;
+}
+
+.upload-fields input:focus {
+  outline: 2px solid #e76b25;
+  outline-offset: 2px;
+}
+
+.upload-file-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1.75rem 1rem;
+  border: 1px dashed rgba(128, 128, 128, 0.55);
+  border-radius: 0.85rem;
+  text-align: center;
+}
+
+.upload-file-icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(231, 107, 37, 0.12);
+  color: #e76b25;
+  font-size: 1.6rem;
+}
+
+.upload-file-zone > span:not(.upload-file-icon) {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.upload-file-zone input {
+  width: 100%;
+  max-width: 350px;
+  font: inherit;
+  font-size: 0.85rem;
+}
+
+.participant-submit {
+  align-self: flex-end;
+  background: #e76b25;
+  color: #fff;
+  min-height: 44px;
+  padding: 0.85rem 1.5rem;
+}
+
+.participant-submit:hover:not(:disabled) {
+  background: #ca581b;
+}
+
+.upload-feedback {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border-radius: 0.65rem;
+  background: rgba(34, 197, 94, 0.1);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@media (max-width: 650px) {
+  .upload-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .participant-submit {
+    align-self: stretch;
+  }
+}
+
+/* Refinamento visual do registro de atividades */
+
+.activity-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.activity-form-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.activity-form-symbol {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  border-radius: 0.8rem;
+  background: rgba(231, 107, 37, 0.12);
+  color: #e76b25;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.activity-form-heading h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.2rem;
+}
+
+.activity-form-heading p {
+  margin: 0;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.activity-form-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.activity-form-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.activity-form-fields input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 0.65rem;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 400;
+}
+
+.activity-form-fields input:focus {
+  outline: 2px solid #e76b25;
+  outline-offset: 2px;
+}
+
+.activity-distance-field {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 0.65rem;
+}
+
+.activity-distance-field input {
+  border: none;
+  outline: none;
+}
+
+.activity-distance-field input:focus {
+  outline: none;
+}
+
+.activity-distance-field:focus-within {
+  outline: 2px solid #e76b25;
+  outline-offset: 2px;
+}
+
+.activity-distance-field span {
+  padding: 0 1rem;
+  font-weight: 600;
+  opacity: 0.65;
+}
+
+.activity-file-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 2rem 1rem;
+  border: 1px dashed rgba(128, 128, 128, 0.45);
+  border-radius: 0.85rem;
+  background: rgba(128, 128, 128, 0.035);
+  text-align: center;
+}
+
+.activity-file-symbol {
+  color: #e76b25;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.activity-file-zone p {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.activity-file-button {
+  display: inline-flex;
+  position: relative;
+  justify-content: center;
+  padding: 0.7rem 1.25rem;
+  margin-top: 0.5rem;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.activity-file-button:hover {
+  border-color: #e76b25;
+}
+
+.activity-file-button input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.activity-selected-file {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-size: 0.85rem;
+  color: #e76b25;
+}
+
+.activity-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.activity-form-footer p {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.activity-form-footer .participant-submit {
+  flex-shrink: 0;
+}
+
+@media (max-width: 650px) {
+  .activity-form-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-form-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .activity-form-footer .participant-submit {
+    width: 100%;
+  }
+}
+
+/* Refinamento do campo de data */
+
+.activity-form-fields input[type="date"] {
+  min-height: 48px;
+  color: inherit;
+  color-scheme: light;
+  cursor: pointer;
+}
+
+.activity-form-fields input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.75;
+  padding: 0.35rem;
+  border-radius: 0.35rem;
+}
+
+.activity-form-fields input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  background-color: rgba(231, 107, 37, 0.12);
+  opacity: 1;
+}
+
+/* Calendário compatível com tema escuro */
+@media (prefers-color-scheme: dark) {
+  .activity-form-fields input[type="date"] {
+    color-scheme: dark;
+  }
+}
+
+/* Botão de envio */
+.activity-form-footer .participant-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 170px;
+  border-radius: 0.65rem;
+  font-weight: 700;
+}
+
+/* Histórico de comprovantes */
+.evidence-open-button {
+  align-self: flex-start;
+  margin-top: 0.4rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.evidence-open-button:hover {
+  opacity: 0.8;
+}
+
+.evidence-open-button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.evidence-error {
+  padding: 0.75rem 1rem;
+  border-radius: 0.6rem;
+  color: #d84b4b;
+  border: 1px solid currentColor;
+  font-size: 0.85rem;
+}
+
+/* Visualizador privado de comprovantes */
+
+.evidence-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(5px);
+}
+
+.evidence-modal {
+  display: flex;
+  flex-direction: column;
+  width: min(900px, 100%);
+  max-height: 95dvh;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
+}
+
+.evidence-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.evidence-modal-header strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+
+.evidence-modal-close {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 0.6rem;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.evidence-modal-close:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.evidence-modal-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: auto;
+  padding: 1rem;
+}
+
+.evidence-modal-content img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(95dvh - 110px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.35rem;
+}
+
+@media (max-width: 650px) {
+  .evidence-modal-backdrop {
+    padding: 0.5rem;
+  }
+
+  .evidence-modal {
+    max-height: 96dvh;
+    border-radius: 0.8rem;
+  }
+
+  .evidence-modal-header {
+    padding: 0.7rem;
+  }
+
+  .evidence-modal-content {
+    padding: 0.5rem;
+  }
+
+  .evidence-modal-content img {
+    max-height: calc(96dvh - 90px);
+  }
+}
+
+
+/* Edição e reenvio de comprovantes */
+.evidence-edit-button {
+  align-self: flex-start;
+  margin-top: .5rem;
+  padding: .6rem .9rem;
+  border: 1px solid var(--color-primary);
+  border-radius: .6rem;
+  background: transparent;
+  color: var(--color-primary);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.evidence-review {
+  margin-top: .65rem;
+  padding: .8rem;
+  border-left: 3px solid #ef6666;
+  background: rgba(239, 68, 68, .07);
+  border-radius: .4rem;
+}
+
+.evidence-review p {
+  margin: .4rem 0;
+}
+
+.evidence-edit-form {
+  display: grid;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+}
+
+.evidence-edit-heading,
+.evidence-edit-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.evidence-edit-heading h3 {
+  margin: 0;
+}
+
+.evidence-edit-file {
+  display: grid;
+  gap: .5rem;
+  overflow-wrap: anywhere;
+}
+
+.evidence-edit-file input {
+  max-width: 100%;
+}
+
+@media (max-width: 650px) {
+  .evidence-edit-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+
+/* Modal de edição — desktop e mobile */
+.evidence-edit-backdrop {
+  overflow-y: auto;
+  align-items: center;
+}
+
+.evidence-edit-dialog {
+  width: min(560px, 100%);
+  max-height: min(92dvh, 850px);
+  overflow-y: auto;
+  margin: auto;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, .35);
+}
+
+.evidence-edit-dialog .activity-form-fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.evidence-edit-dialog .evidence-edit-heading > button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: .6rem;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.evidence-edit-dialog .evidence-edit-actions > button:first-child {
+  padding: .8rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: .6rem;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 650px) {
+  .evidence-edit-backdrop {
+    padding: .5rem;
+  }
+
+  .evidence-edit-dialog {
+    max-height: 96dvh;
+    padding: 1.2rem;
+  }
+
+  .evidence-edit-dialog .activity-form-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .evidence-edit-dialog .evidence-edit-actions {
+    flex-direction: column-reverse;
+  }
+
+  .evidence-edit-dialog .evidence-edit-actions button {
+    width: 100%;
+  }
+}
+
+/* Glassmorphism — modal de edição ClicksportBR */
+.evidence-edit-backdrop {
+  background: rgba(14, 18, 28, 0.48);
+  backdrop-filter: blur(12px) saturate(125%);
+  -webkit-backdrop-filter: blur(12px) saturate(125%);
+}
+
+.evidence-edit-dialog {
+  background: color-mix(
+    in srgb,
+    var(--color-surface, #ffffff) 86%,
+    transparent
+  );
+  backdrop-filter: blur(22px) saturate(145%);
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 1.15rem;
+  box-shadow:
+    0 28px 75px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.evidence-edit-dialog .activity-form-fields input {
+  background: color-mix(
+    in srgb,
+    var(--color-surface, #ffffff) 70%,
+    transparent
+  );
+  border-radius: 0.8rem;
+}
+
+.evidence-edit-dialog .evidence-edit-file {
+  padding: 1rem;
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  border-radius: 0.85rem;
+  background: rgba(128, 128, 128, 0.055);
+}
+
+.evidence-edit-dialog .participant-submit {
+  box-shadow: 0 6px 18px rgba(231, 107, 37, 0.18);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .evidence-edit-dialog {
+    background: var(--color-surface, #ffffff);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+
+/* Seletor de arquivo personalizado do modal */
+.evidence-edit-dialog .evidence-edit-file {
+  gap: .65rem;
+}
+
+.evidence-edit-file > p {
+  margin: 0;
+  font-size: .82rem;
+  opacity: .7;
+}
+
+.evidence-file-picker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: .7rem 1rem;
+  border: 1px dashed var(--color-primary);
+  border-radius: .75rem;
+  color: var(--color-primary);
+  background: color-mix(
+    in srgb,
+    var(--color-primary) 7%,
+    transparent
+  );
+  font-size: .9rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+
+.evidence-file-picker:hover {
+  background: color-mix(
+    in srgb,
+    var(--color-primary) 14%,
+    transparent
+  );
+}
+
+.evidence-file-picker:focus-within {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.evidence-file-picker input[type="file"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.evidence-file-name {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: .8rem;
+  opacity: .75;
+}
+
+/* Disponibilidade de reenvio */
+.evidence-edit-button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.evidence-resend-unavailable {
+  display: block;
+  max-width: 360px;
+  margin-top: .35rem;
+  color: var(--color-text-muted);
+  font-size: .8rem;
+  line-height: 1.5;
+}
+
+/* Motivo e observação da avaliação administrativa */
+.evidence-review-details {
+  display: grid;
+  gap: .55rem;
+  margin: .5rem 0;
+}
+
+.evidence-review-details > div:first-child {
+  display: grid;
+  gap: .2rem;
+}
+
+.evidence-review-caption {
+  display: block;
+  margin-bottom: .2rem;
+  font-size: .75rem;
+  opacity: .75;
+}
+
+.evidence-review-observation {
+  padding-top: .7rem;
+  margin-top: .35rem;
+  border-top: 1px solid rgba(255,255,255,.13);
+}
+
+.evidence-review-observation p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
