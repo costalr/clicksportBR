@@ -99,6 +99,19 @@
   color: var(--color-text-secondary);
 }
 
+.catalog-state,
+.catalog-error {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.catalog-error {
+  color: #ef6666;
+}
+
 .catalog-filters {
   display: grid;
   gap: 12px;
@@ -197,6 +210,10 @@
 
 .status-open {
   color: var(--color-text);
+}
+
+.status-published {
+  color: var(--color-primary, #f97316);
 }
 
 .status-soon,

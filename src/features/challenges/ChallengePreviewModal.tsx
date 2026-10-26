@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import type { Challenge } from './types'
-import { statusLabels } from './types'
 import './challenge-preview.css'
 
 type Props = {
@@ -98,11 +97,27 @@ export function ChallengePreviewModal({ challenge, onClose }: Props) {
         </div>
 
         <div className="preview-body">
-          <div className="preview-art" aria-hidden="true">
-            <span>RUN / CLICKSPORTBR</span>
-            <strong>{challenge.distanceKm}<small> KM</small></strong>
-            <span>SEU PRÓXIMO DESAFIO</span>
-          </div>
+         <div className="preview-art" aria-label="Representação ilustrativa de uma medalha">
+  <span className="preview-art-heading">
+    CLICKSPORTBR / SUA CONQUISTA
+  </span>
+
+  <div className="preview-medal-scene" aria-hidden="true">
+    <div className="preview-medal-ribbon" />
+
+    <div className="preview-medal">
+      <div className="preview-medal-inner">
+        <span>CLICKSPORTBR</span>
+        <strong>{challenge.distanceKm}</strong>
+        <small>KM</small>
+      </div>
+    </div>
+  </div>
+
+  <span className="preview-art-caption">
+    IMAGEM ILUSTRATIVA · PRODUTO A CONFIRMAR
+  </span>
+</div>
 
           <div className="preview-content">
             <span className="preview-eyebrow">
@@ -124,9 +139,13 @@ export function ChallengePreviewModal({ challenge, onClose }: Props) {
             </div>
 
             <div className="preview-status">
-              <span>{statusLabels[challenge.status]}</span>
-              <small>Dados demonstrativos</small>
-            </div>
+  <span className="preview-demo-badge">
+    Desafio publicado
+  </span>
+  <small>
+    Informações de produtos, kits e valores ainda não disponíveis.
+  </small>
+</div>
 
             {expanded && (
               <div className="preview-extra">
@@ -134,12 +153,26 @@ export function ChallengePreviewModal({ challenge, onClose }: Props) {
                 <p>{challenge.description}</p>
                 <p>
                   As inscrições comerciais ainda não estão disponíveis
-                  nesta versão demonstrativa.
+                  nesta plataforma.
                 </p>
               </div>
             )}
 
-            <div className="preview-actions">
+            <section className="preview-commercial-pending" aria-label="Informações comerciais">
+            <div className="preview-commercial-heading">
+              <span>OPÇÕES DE PARTICIPAÇÃO</span>
+              <strong>Valores em definição</strong>
+            </div>
+            <p>
+              As opções de participação, medalhas, kits e respectivos valores
+              serão divulgados após a confirmação dos produtos.
+            </p>
+            <span className="preview-commercial-note">
+              Informações comerciais ainda não disponíveis.
+            </span>
+          </section>
+
+          <div className="preview-actions">
               <Link
                 to={`/desafios/${challenge.slug}`}
                 className="button-primary"

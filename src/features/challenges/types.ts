@@ -1,6 +1,6 @@
 export type ChallengeModality = 'Corrida' | 'Caminhada'
 
-export type ChallengeStatus = 'open' | 'soon' | 'closed'
+export type ChallengeStatus = 'open' | 'soon' | 'closed' | 'published'
 
 export interface Challenge {
   id: string
@@ -17,4 +17,5 @@ export const statusLabels: Record<ChallengeStatus, string> = {
   open: 'Inscrições abertas',
   soon: 'Em breve',
   closed: 'Inscrições encerradas',
+  published: 'Desafio publicado',
 }

@@ -166,37 +166,149 @@
 }
 
 .preview-art {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  min-height: 410px;
-  padding: 26px;
+  min-height: 440px;
+  padding: 24px;
+  overflow: hidden;
   border-radius: 22px;
   color: #fff;
   background:
-    radial-gradient(circle at 65% 35%, rgba(255,90,25,.32), transparent 45%),
-    linear-gradient(145deg, #374251, #171d26);
+    radial-gradient(circle at 50% 50%, rgba(244, 81, 30, .2), transparent 57%),
+    linear-gradient(145deg, #303b4a, #151b24);
 }
 
-.preview-art strong {
-  font-size: clamp(90px, 11vw, 165px);
-  line-height: 1;
-  letter-spacing: -.1em;
-}
-
-.preview-art strong small {
-  font-size: 22px;
-  letter-spacing: 0;
-  color: #ff8758;
-}
-
-.preview-art > span {
+.preview-art-heading,
+.preview-art-caption {
+  position: relative;
+  z-index: 2;
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: .15em;
+  letter-spacing: .12em;
+  text-align: center;
 }
 
+.preview-art-caption {
+  color: rgba(255, 255, 255, .65);
+  font-size: 9px;
+}
+
+.preview-medal-scene {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 310px;
+  isolation: isolate;
+}
+
+.preview-medal-scene::before {
+  content: '';
+  position: absolute;
+  width: min(90%, 340px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 50%;
+  transform: rotate(-25deg) scaleY(.72);
+}
+
+.preview-medal-ribbon {
+  position: absolute;
+  top: 0;
+  width: 64px;
+  height: 120px;
+  background: linear-gradient(90deg, #c73913, #ff7043, #a52b0d);
+  clip-path: polygon(0 0, 100% 0, 78% 100%, 50% 82%, 22% 100%);
+  transform: rotate(8deg);
+}
+
+.preview-medal {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 205px;
+  height: 205px;
+  margin-top: 45px;
+  border-radius: 50%;
+  border: 6px solid #f5c779;
+  background:
+    radial-gradient(circle at 30% 25%, #ffe5a6, transparent 40%),
+    linear-gradient(135deg, #e8ad55, #a76324 65%, #f0bd6a);
+  box-shadow:
+    0 25px 55px rgba(0, 0, 0, .35),
+    inset 0 0 0 5px rgba(105, 53, 13, .25),
+    inset 0 0 24px rgba(255, 238, 182, .45);
+  transform: rotate(-8deg);
+  animation: preview-medal-float 6s ease-in-out infinite;
+}
+
+.preview-medal-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 80%;
+  border: 1px solid rgba(255, 241, 195, .65);
+  border-radius: 50%;
+  color: #62340e;
+}
+
+.preview-medal-inner span {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+.preview-medal-inner strong {
+  font-size: 70px;
+  line-height: 1;
+  letter-spacing: -.07em;
+}
+
+.preview-medal-inner small {
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.preview-demo-badge {
+  color: #ffad8d;
+  font-weight: 700;
+}
+
+@keyframes preview-medal-float {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-10px) rotate(-5deg); }
+}
+
+@media (max-width: 700px) {
+  .preview-art {
+    min-height: 340px;
+  }
+
+  .preview-medal-scene {
+    min-height: 245px;
+  }
+
+  .preview-medal {
+    width: 165px;
+    height: 165px;
+  }
+
+  .preview-medal-inner strong {
+    font-size: 54px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preview-medal {
+    animation: none;
+  }
+}
 .preview-content {
   display: flex;
   flex-direction: column;
@@ -336,4 +448,41 @@
     animation: none !important;
     transition: none !important;
   }
+}
+
+
+/* Apresentação comercial provisória — sem ofertas ou preços fictícios. */
+.preview-commercial-pending {
+  width: 100%;
+  margin-top: 24px;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .045);
+}
+.preview-commercial-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+.preview-commercial-heading span {
+  color: #ff8758;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+.preview-commercial-heading strong {
+  font-size: 16px;
+}
+.preview-commercial-pending p {
+  margin: 12px 0;
+  color: rgba(255,255,255,.72);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.preview-commercial-note {
+  color: rgba(255,255,255,.52);
+  font-size: 11px;
 }

@@ -38,6 +38,12 @@ export function ChallengeCard({ challenge }: Props) {
             {statusLabels[challenge.status]}
           </span>
 
+          <div className="commercial-placeholder-card" aria-label="Informações de preço">
+            <span>VALOR DO DESAFIO</span>
+            <strong>Em definição</strong>
+            <small>Opções e kits a confirmar</small>
+          </div>
+
           <div className="preview-card-actions">
             <button
               type="button"

@@ -1,12 +1,15 @@
-/* ClicksportBR — Landing V2 / glass + editorial */
-
 .glass-home {
   --glass-orange: var(--color-primary);
-  --glass-white: #fff;
-  --glass-muted: rgba(255,255,255,.66);
+  --landing-gutter: clamp(16px, 1.25vw, 24px);
+  position: relative;
+  isolation: isolate;
   width: 100%;
   overflow: clip;
   color: var(--color-text);
+  background:
+    radial-gradient(ellipse 65% 28% at 92% 35%, rgba(244, 81, 22, .07), transparent 75%),
+    radial-gradient(ellipse 60% 26% at 6% 68%, rgba(92, 122, 163, .06), transparent 75%),
+    var(--color-background);
 }
 
 .glass-home *,
@@ -18,55 +21,65 @@
 .glass-hero {
   position: relative;
   isolation: isolate;
-  min-height: min(820px, 90svh);
-  background:
-    radial-gradient(ellipse at 73% 43%, rgba(255,91,28,.14), transparent 38%),
-    linear-gradient(120deg, #171b22, #252a32 62%, #15191f);
-  color: #fff;
+  min-height: min(850px, 92svh);
   overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(ellipse at 75% 42%, rgba(255, 91, 28, .16), transparent 40%),
+    linear-gradient(120deg, #171b22, #252a32 62%, #15191f);
 }
 
 .glass-ambient {
   position: absolute;
-  pointer-events: none;
   z-index: -1;
   border-radius: 50%;
   filter: blur(90px);
-  opacity: .7;
+  pointer-events: none;
 }
 
 .glass-ambient-one {
+  top: 8%;
+  right: 4%;
   width: 460px;
   height: 460px;
-  background: rgba(255,80,16,.23);
-  right: 6%;
-  top: 10%;
+  background: rgba(255, 80, 16, .22);
   animation: glass-drift 13s ease-in-out infinite alternate;
 }
 
 .glass-ambient-two {
+  bottom: -16%;
+  left: -8%;
   width: 330px;
   height: 330px;
-  background: rgba(95,117,151,.17);
-  left: -8%;
-  bottom: -15%;
+  background: rgba(95, 117, 151, .17);
   animation: glass-drift 17s ease-in-out infinite alternate-reverse;
 }
 
-.glass-hero-inner {
-  width: min(100% - 80px, 1440px);
-  min-height: 710px;
+.glass-hero-inner,
+.glass-hero-bottom,
+.glass-awards,
+.glass-featured,
+.glass-how,
+.glass-statement,
+.glass-photo,
+.glass-final {
+  width: calc(100% - 2 * var(--landing-gutter));
   margin-inline: auto;
+}
+
+.glass-hero-inner {
+  min-height: min(770px, 84svh);
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
   align-items: center;
-  gap: clamp(24px, 4vw, 72px);
+  gap: clamp(24px, 4vw, 76px);
 }
 
 .glass-hero-copy {
   position: relative;
   z-index: 2;
-  padding-block: 100px 80px;
+  min-width: 0;
+  padding-block: 76px 64px;
 }
 
 .glass-kicker,
@@ -74,27 +87,28 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  color: var(--glass-orange);
   font-size: 11px;
   font-weight: 850;
-  letter-spacing: .18em;
-  color: var(--glass-orange);
+  letter-spacing: .16em;
 }
 
 .glass-kicker-dot {
   width: 7px;
   height: 7px;
-  background: var(--glass-orange);
+  flex: 0 0 7px;
   border-radius: 50%;
+  background: var(--glass-orange);
   box-shadow: 0 0 16px var(--glass-orange);
 }
 
 .glass-hero h1 {
-  max-width: 860px;
-  font-size: clamp(58px, 6.2vw, 112px);
+  max-width: 820px;
+  margin: 28px 0;
+  font-size: clamp(56px, 6.6vw, 108px);
+  font-weight: 900;
   line-height: .97;
   letter-spacing: -.075em;
-  font-weight: 900;
-  margin: 28px 0;
 }
 
 .glass-hero h1 span {
@@ -102,83 +116,81 @@
 }
 
 .glass-hero-copy > p {
-  max-width: 540px;
-  color: rgba(255,255,255,.72);
-  line-height: 1.8;
+  max-width: 570px;
+  color: rgba(255, 255, 255, .72);
   font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.8;
 }
 
 .glass-hero-actions {
   display: flex;
-  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 36px;
+  gap: 12px;
+  margin-top: 34px;
 }
 
 .glass-primary,
 .glass-outline {
   min-height: 52px;
-  padding: 14px 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
-  text-decoration: none;
+  gap: 14px;
+  padding: 14px 22px;
+  border: 1px solid transparent;
   border-radius: 12px;
-  font-weight: 750;
   font-size: 14px;
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    background .25s ease,
-    border-color .25s ease;
+  font-weight: 750;
+  text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
 }
 
 .glass-primary {
-  background: var(--glass-orange);
   color: #fff;
-  box-shadow: 0 12px 32px rgba(255,77,14,.17);
+  background: var(--glass-orange);
+  box-shadow: 0 12px 32px rgba(255, 77, 14, .2);
 }
 
 .glass-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 42px rgba(255,77,14,.33);
+  box-shadow: 0 16px 42px rgba(255, 77, 14, .34);
 }
 
 .glass-outline {
-  background: rgba(255,255,255,.055);
   color: #fff;
-  border: 1px solid rgba(255,255,255,.18);
+  border-color: rgba(255, 255, 255, .2);
+  background: rgba(255, 255, 255, .055);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
 .glass-outline:hover {
-  background: rgba(255,255,255,.12);
   transform: translateY(-3px);
+  background: rgba(255, 255, 255, .12);
 }
 
 .glass-hero-footer {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-top: 60px;
+  gap: 14px;
+  margin-top: 52px;
+  color: rgba(255, 255, 255, .48);
   font-size: 10px;
   font-weight: 750;
-  letter-spacing: .16em;
-  color: rgba(255,255,255,.48);
+  letter-spacing: .13em;
 }
 
 .glass-footer-line {
-  width: 42px;
+  width: 38px;
   height: 1px;
+  flex: 0 0 38px;
   background: var(--glass-orange);
 }
 
 .glass-hero-stage {
   position: relative;
   width: 100%;
-  height: clamp(430px, 42vw, 650px);
+  height: clamp(400px, 43vw, 620px);
   display: grid;
   place-items: center;
   perspective: 900px;
@@ -186,33 +198,33 @@
 
 .glass-orbit {
   position: absolute;
-  width: 85%;
+  width: 84%;
   aspect-ratio: 1;
-  border: 1px solid rgba(255,255,255,.16);
+  border: 1px solid rgba(255, 255, 255, .15);
   border-radius: 50%;
   transform: rotate(-24deg) scaleY(.78);
 }
 
 .glass-orbit-two {
-  width: 108%;
-  border-color: rgba(255,255,255,.09);
+  width: 106%;
+  border-color: rgba(255, 255, 255, .09);
 }
 
 .glass-orbit-three {
   width: 128%;
-  border-color: rgba(255,255,255,.05);
+  border-color: rgba(255, 255, 255, .05);
 }
 
 .glass-stage-number {
-  font-size: clamp(125px, 19vw, 340px);
+  color: transparent;
+  font-size: clamp(135px, 20vw, 310px);
   font-weight: 950;
   line-height: 1;
   letter-spacing: -.13em;
   padding-right: .13em;
-  color: transparent;
-  -webkit-text-stroke: 2px rgba(255,255,255,.22);
-  transform: rotate(-11deg);
   user-select: none;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, .22);
+  transform: rotate(-11deg);
 }
 
 .glass-float-card {
@@ -220,63 +232,60 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  border: 1px solid rgba(255,255,255,.24);
+  gap: 11px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .24);
   border-radius: 22px;
-  background: linear-gradient(
-    130deg,
-    rgba(255,255,255,.18),
-    rgba(255,255,255,.045)
-  );
-  box-shadow: 0 25px 70px rgba(0,0,0,.2);
+  background: linear-gradient(130deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, .045));
+  box-shadow: 0 25px 70px rgba(0, 0, 0, .2);
   backdrop-filter: blur(24px) saturate(140%);
   -webkit-backdrop-filter: blur(24px) saturate(140%);
-  color: #fff;
 }
 
 .glass-float-top {
   top: 10%;
   right: 0;
   width: min(70%, 340px);
-  padding: 28px;
+  padding: 26px;
   transform: rotate(6deg);
   animation: glass-float 7s ease-in-out infinite;
 }
 
 .glass-float-top strong {
-  font-size: clamp(23px, 2.6vw, 38px);
+  font-size: clamp(24px, 2.8vw, 40px);
   line-height: 1.1;
   letter-spacing: -.045em;
 }
 
 .glass-float-label,
 .glass-float-sub {
+  color: rgba(255, 255, 255, .7);
   font-size: 10px;
   font-weight: 750;
   letter-spacing: .13em;
-  color: rgba(255,255,255,.7);
 }
 
 .glass-float-bottom {
+  bottom: 12%;
   left: 0;
-  bottom: 13%;
-  width: min(68%, 320px);
-  padding: 24px;
+  width: min(74%, 350px);
   flex-direction: row;
   align-items: center;
+  padding: 22px;
   transform: rotate(-5deg);
   animation: glass-float-bottom 8s ease-in-out infinite;
 }
 
 .glass-float-bottom > div {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 5px;
-  flex: 1;
+  min-width: 0;
 }
 
 .glass-float-bottom strong {
-  font-size: 23px;
+  font-size: clamp(16px, 1.7vw, 22px);
   letter-spacing: -.03em;
 }
 
@@ -286,95 +295,267 @@
   flex: 0 0 14px;
   border-radius: 50%;
   background: var(--glass-orange);
-  box-shadow: 0 0 0 7px rgba(255,91,28,.15), 0 0 24px rgba(255,91,28,.6);
+  box-shadow: 0 0 0 7px rgba(255, 91, 28, .15), 0 0 24px rgba(255, 91, 28, .6);
 }
 
 .glass-float-arrow {
-  font-size: 28px;
   color: var(--glass-orange);
+  font-size: 26px;
 }
 
 .glass-stage-caption {
   position: absolute;
+  right: 8%;
   bottom: 0;
-  right: 10%;
+  color: rgba(255, 255, 255, .45);
   font-size: 10px;
-  letter-spacing: .18em;
-  color: rgba(255,255,255,.45);
+  letter-spacing: .16em;
 }
 
 .glass-hero-bottom {
-  width: min(100% - 80px, 1440px);
-  margin-inline: auto;
   display: flex;
   justify-content: space-between;
-  gap: 24px;
-  padding: 22px 0;
-  border-top: 1px solid rgba(255,255,255,.12);
-  color: rgba(255,255,255,.48);
+  gap: 20px;
+  padding-block: 20px;
+  color: rgba(255, 255, 255, .48);
+  border-top: 1px solid rgba(255, 255, 255, .12);
   font-size: 10px;
   font-weight: 750;
-  letter-spacing: .13em;
+  letter-spacing: .12em;
 }
 
 .glass-scroll-label {
   color: var(--glass-orange);
 }
 
+.glass-awards,
 .glass-featured,
-.glass-how,
-.glass-statement,
-.glass-final {
-  width: min(100% - 80px, 1440px);
-  margin-inline: auto;
-}
-
-.glass-featured {
-  padding-block: 115px 100px;
+.glass-how {
+  padding-block: clamp(76px, 9vw, 120px);
 }
 
 .glass-section-top {
   display: flex;
   align-items: end;
   justify-content: space-between;
-  gap: 40px;
-  margin-bottom: 42px;
+  gap: 36px;
+  margin-bottom: 38px;
+}
+
+.glass-section-top > div {
+  min-width: 0;
 }
 
 .glass-section-top h2,
 .glass-how-heading h2,
 .glass-final h2 {
-  font-size: clamp(38px, 4.5vw, 72px);
+  margin: 16px 0 18px;
+  font-size: clamp(38px, 4.5vw, 70px);
   line-height: 1.06;
   letter-spacing: -.06em;
-  margin: 16px 0 18px;
-}
-
-.glass-section-top h2 {
-  max-width: 900px;
 }
 
 .glass-section-top h2 em,
 .glass-how-heading h2 em,
 .glass-final h2 em {
-  font-style: normal;
   color: var(--glass-orange);
+  font-style: normal;
 }
 
 .glass-section-top p,
 .glass-how-heading p,
 .glass-final p {
+  max-width: 760px;
   color: var(--color-text-secondary);
   font-size: 17px;
-  line-height: 1.7;
+  line-height: 1.75;
+}
+
+.glass-section-top h2 {
+  max-width: 1100px;
+}
+
+.glass-award-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 28px);
+}
+
+.glass-award-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 26px;
+  background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+  box-shadow: 0 18px 55px rgba(22, 31, 45, .07), inset 0 1px rgba(255, 255, 255, .55);
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+.glass-award-card:hover {
+  transform: translateY(-5px);
+  border-color: color-mix(in srgb, var(--glass-orange) 40%, var(--color-border));
+  box-shadow: 0 25px 65px rgba(22, 31, 45, .12);
+}
+
+.glass-award-art {
+  position: relative;
+  min-height: clamp(300px, 27vw, 500px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 52% 45%, rgba(255, 112, 56, .2), transparent 42%),
+    linear-gradient(145deg, #222a35, #131820 78%);
+}
+
+.glass-award-art::before,
+.glass-award-art::after {
+  position: absolute;
+  width: 72%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 50%;
+  content: '';
+  transform: rotate(-22deg) scaleY(.72);
+}
+
+.glass-award-art::after {
+  width: 92%;
+  border-color: rgba(255, 255, 255, .065);
+}
+
+.glass-medal-ribbon {
+  position: absolute;
+  top: 14%;
+  width: clamp(58px, 5vw, 82px);
+  height: clamp(135px, 12vw, 195px);
+  background: linear-gradient(90deg, #b83d20, #fa7545 48%, #d74723);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, .25));
+  transform: rotate(12deg);
+}
+
+.glass-medal-shape {
+  position: relative;
+  z-index: 1;
+  width: clamp(160px, 15vw, 290px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 220, 174, .82);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #ffe4b4, #e3a454 35%, #9c552b 76%, #663a2b);
+  box-shadow:
+    0 25px 55px rgba(0, 0, 0, .38),
+    inset 0 0 0 8px rgba(255, 255, 255, .15),
+    inset 0 0 0 14px rgba(92, 46, 23, .2);
+  transform: rotate(-8deg);
+}
+
+.glass-medal-shape::before {
+  position: absolute;
+  inset: 17px;
+  border: 1px solid rgba(255, 245, 225, .6);
+  border-radius: 50%;
+  content: '';
+}
+
+.glass-medal-shape span {
+  color: rgba(75, 42, 26, .8);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .16em;
+}
+
+.glass-kit-box {
+  position: relative;
+  z-index: 1;
+  width: clamp(170px, 18vw, 300px);
+  aspect-ratio: 1.15;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .48);
+  background: linear-gradient(145deg, rgba(255, 255, 255, .92), rgba(208, 216, 227, .8));
+  box-shadow: 0 35px 60px rgba(0, 0, 0, .32), inset 0 1px rgba(255, 255, 255, .8);
+  transform: rotate(-8deg) skewY(2deg);
+}
+
+.glass-kit-box::before {
+  position: absolute;
+  top: -21px;
+  left: 0;
+  width: 100%;
+  height: 22px;
+  background: linear-gradient(90deg, #ef6b3c, #ff9668);
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  content: '';
+}
+
+.glass-kit-box-mark {
+  color: #e75526;
+  font-size: clamp(62px, 8vw, 100px);
+  font-weight: 950;
+  letter-spacing: -.12em;
+}
+
+.glass-kit-orbit {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border: 1px solid rgba(255, 255, 255, .24);
+  border-radius: 50%;
+}
+
+.glass-kit-orbit-one {
+  top: 16%;
+  left: 20%;
+}
+
+.glass-kit-orbit-two {
+  right: 16%;
+  bottom: 15%;
+  width: 110px;
+  height: 110px;
+}
+
+.glass-art-index {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  z-index: 2;
+  color: rgba(255, 255, 255, .65);
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: .15em;
+}
+
+.glass-award-copy {
+  padding: clamp(22px, 3vw, 36px);
+}
+
+.glass-award-copy h3 {
+  margin: 12px 0 8px;
+  font-size: clamp(22px, 2.3vw, 30px);
+  line-height: 1.15;
+  letter-spacing: -.04em;
+}
+
+.glass-award-copy p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.65;
 }
 
 .glass-text-link {
+  padding-bottom: 10px;
   color: var(--glass-orange);
   font-weight: 750;
   text-decoration: none;
   white-space: nowrap;
-  padding-bottom: 12px;
 }
 
 .glass-text-link:hover {
@@ -384,7 +565,19 @@
 .glass-challenge-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  gap: clamp(16px, 1.6vw, 30px);
+}
+
+@media (max-width: 900px) {
+  .glass-challenge-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .glass-challenge-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .glass-challenge-wrap {
@@ -393,26 +586,71 @@
 }
 
 .glass-challenge-wrap:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
 }
 
 .glass-challenge-wrap .challenge-card {
   height: 100%;
-  background: color-mix(in srgb, var(--color-surface) 85%, transparent);
   border: 1px solid var(--color-border);
-  box-shadow: 0 16px 40px rgba(0,0,0,.07);
-  transition: box-shadow .3s ease, border-color .3s ease;
+  background: color-mix(in srgb, var(--color-surface) 84%, transparent);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .07);
+  transition: border-color .3s ease, box-shadow .3s ease;
 }
 
 .glass-challenge-wrap:hover .challenge-card {
-  border-color: var(--glass-orange);
-  box-shadow: 0 20px 55px rgba(0,0,0,.16);
+  border-color: color-mix(in srgb, var(--glass-orange) 44%, var(--color-border));
+  box-shadow: 0 20px 55px rgba(0, 0, 0, .14);
+}
+
+.glass-challenge-wrap .preview-card-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 46px;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.glass-challenge-wrap .preview-card-actions > .button-secondary,
+.glass-challenge-wrap .preview-card-actions > .preview-card-expand {
+  box-sizing: border-box;
+  width: 100%;
+  height: 46px;
+  min-height: 46px;
+  max-height: 46px;
+  margin: 0;
+  padding-block: 0;
+  align-self: stretch;
+  line-height: 1;
+}
+
+.glass-challenge-wrap .preview-card-actions > .button-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border: 1px solid var(--glass-orange);
+  background: var(--glass-orange);
+}
+
+.glass-challenge-wrap .preview-card-actions > .button-secondary:hover {
+  background: color-mix(in srgb, var(--glass-orange) 88%, #000);
+}
+
+.glass-challenge-wrap .preview-card-actions > .preview-card-expand {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: var(--glass-orange);
+  border: 1px solid color-mix(in srgb, var(--glass-orange) 28%, var(--color-border));
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--glass-orange) 9%, var(--color-surface));
+  text-decoration: none;
+  font-size: 23px;
 }
 
 .glass-empty {
+  padding: clamp(28px, 5vw, 48px);
   border: 1px solid var(--color-border);
   border-radius: 24px;
-  padding: 40px;
   background: var(--color-surface);
 }
 
@@ -426,100 +664,100 @@
 }
 
 .glass-how {
-  padding-block: 110px;
   border-top: 1px solid var(--color-border);
 }
 
 .glass-how-heading {
   max-width: 760px;
-  margin-bottom: 72px;
+  margin-bottom: 62px;
 }
 
 .glass-timeline {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0;
-  position: relative;
+  gap: clamp(18px, 2vw, 34px);
 }
 
 .glass-timeline::before {
-  content: '';
   position: absolute;
+  top: 30px;
+  right: 7%;
+  left: 7%;
   height: 1px;
   background: var(--color-border);
-  top: 30px;
-  left: 7%;
-  right: 7%;
+  content: '';
 }
 
 .glass-timeline-step {
   position: relative;
-  padding: 0 30px 20px 0;
+  min-width: 0;
+  padding-right: 18px;
 }
 
 .glass-timeline-marker {
+  position: relative;
+  z-index: 1;
   width: 60px;
   height: 60px;
   display: grid;
   place-items: center;
+  margin-bottom: 24px;
+  color: var(--glass-orange);
+  border: 1px solid var(--color-border);
   border-radius: 20px;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .08);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  color: var(--glass-orange);
   font-size: 20px;
   font-weight: 850;
-  margin-bottom: 28px;
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 8px 30px rgba(0,0,0,.08);
 }
 
 .glass-timeline-step h3 {
-  font-size: 22px;
+  margin: 0 0 10px;
+  font-size: 21px;
   letter-spacing: -.03em;
-  margin: 0 0 12px;
 }
 
 .glass-timeline-step p {
+  max-width: 300px;
   color: var(--color-text-secondary);
   font-size: 15px;
   line-height: 1.7;
-  max-width: 260px;
 }
 
 .glass-statement {
   position: relative;
   isolation: isolate;
-  min-height: 520px;
+  min-height: 500px;
   display: grid;
-  grid-template-columns: 1.15fr .85fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
   align-items: center;
   gap: 32px;
-  border-radius: 32px;
-  padding: clamp(36px, 5vw, 80px);
-  background: linear-gradient(125deg, #171c24, #282d36);
-  color: #fff;
-  overflow: hidden;
+  padding-block: 60px;
 }
 
 .glass-statement-glow {
   position: absolute;
   z-index: -1;
-  right: -8%;
-  top: -30%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(255,88,22,.25), transparent 68%);
+  inset: -12% -4%;
+  background:
+    radial-gradient(ellipse 46% 65% at 82% 44%, rgba(244, 81, 22, .13), transparent 85%),
+    radial-gradient(ellipse 45% 75% at 18% 60%, rgba(75, 105, 155, .07), transparent 90%);
+  filter: blur(34px);
   pointer-events: none;
 }
 
+.glass-statement-copy {
+  min-width: 0;
+}
+
 .glass-statement h2 {
+  margin: 24px 0;
   font-size: clamp(34px, 4.1vw, 66px);
   line-height: 1.06;
   letter-spacing: -.06em;
-  margin: 24px 0;
 }
 
 .glass-statement h2 span {
@@ -528,22 +766,22 @@
 
 .glass-statement p {
   max-width: 520px;
-  color: rgba(255,255,255,.7);
+  margin-bottom: 28px;
+  color: var(--color-text-secondary);
   line-height: 1.7;
-  margin-bottom: 30px;
 }
 
 .glass-statement-graphic {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: clamp(70px, 9vw, 155px);
-  line-height: .83;
-  font-weight: 950;
-  letter-spacing: -.11em;
-  transform: rotate(-10deg);
   color: transparent;
-  -webkit-text-stroke: 2px rgba(255,255,255,.55);
+  font-size: clamp(78px, 10vw, 160px);
+  font-weight: 950;
+  line-height: .83;
+  letter-spacing: -.11em;
+  -webkit-text-stroke: 2px color-mix(in srgb, var(--color-text) 48%, transparent);
+  transform: rotate(-10deg);
 }
 
 .glass-statement-graphic span:last-child {
@@ -551,30 +789,103 @@
   -webkit-text-stroke: 0;
 }
 
+.glass-photo {
+  padding-block: 24px 80px;
+}
+
+.glass-photo-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 26px;
+  background: color-mix(in srgb, var(--color-surface) 84%, transparent);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, .07);
+}
+
+.glass-photo-art {
+  position: relative;
+  min-height: clamp(320px, 31vw, 520px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 65% 35%, rgba(255, 114, 58, .42), transparent 38%),
+    linear-gradient(135deg, #151a23, #343b47 65%, #171b22);
+}
+
+.glass-photo-lens {
+  width: min(58%, 360px);
+  aspect-ratio: 1;
+  border: 24px solid rgba(255, 255, 255, .12);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 180, 130, .6), rgba(255, 89, 28, .2) 30%, #131925 68%);
+  box-shadow: 0 0 0 16px rgba(255, 255, 255, .045), inset 0 0 0 12px rgba(255, 255, 255, .08), inset 0 0 70px rgba(255, 111, 54, .25);
+}
+
+.glass-photo-word {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  color: rgba(255, 255, 255, .88);
+  font-size: clamp(58px, 8vw, 112px);
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: -.09em;
+}
+
+.glass-photo-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(28px, 5vw, 64px);
+}
+
+.glass-photo-copy h3 {
+  margin: 20px 0 10px;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.05em;
+}
+
+.glass-photo-copy p {
+  max-width: 680px;
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.glass-coming {
+  margin-top: 12px;
+  padding: 10px 14px;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .glass-final {
   position: relative;
-  text-align: center;
-  padding-block: 145px 160px;
   isolation: isolate;
+  padding-block: 80px 130px;
+  text-align: center;
 }
 
 .glass-final-glow {
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: radial-gradient(
-    ellipse at center,
-    color-mix(in srgb, var(--glass-orange) 8%, transparent),
-    transparent 65%
-  );
+  background: radial-gradient(ellipse at center, color-mix(in srgb, var(--glass-orange) 8%, transparent), transparent 65%);
 }
 
 .glass-final h2 {
-  margin: 24px auto;
+  margin: 22px auto;
 }
 
 .glass-final p {
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .glass-reveal {
@@ -589,18 +900,18 @@
 }
 
 @keyframes glass-reveal-in {
-  from { opacity: 0; transform: translateY(30px); }
+  from { opacity: 0; transform: translateY(26px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes glass-float {
   0%, 100% { transform: translateY(0) rotate(6deg); }
-  50% { transform: translateY(-18px) rotate(4deg); }
+  50% { transform: translateY(-15px) rotate(4deg); }
 }
 
 @keyframes glass-float-bottom {
   0%, 100% { transform: translateY(0) rotate(-5deg); }
-  50% { transform: translateY(14px) rotate(-3deg); }
+  50% { transform: translateY(12px) rotate(-3deg); }
 }
 
 @keyframes glass-drift {
@@ -608,39 +919,104 @@
   to { transform: translate(30px, 35px); }
 }
 
-@media (max-width: 1100px) {
+:root[data-theme='light'] .glass-home {
+  background:
+    radial-gradient(ellipse 65% 25% at 88% 35%, rgba(244, 81, 22, .065), transparent 78%),
+    radial-gradient(ellipse 60% 30% at 8% 68%, rgba(91, 126, 178, .08), transparent 80%),
+    linear-gradient(160deg, #f9fafc, #f0f3f8 54%, #f8f9fc);
+}
+
+:root[data-theme='light'] .glass-hero {
+  color: #202632;
+  background:
+    radial-gradient(ellipse 48% 70% at 82% 48%, rgba(244, 81, 22, .15), transparent 78%),
+    radial-gradient(ellipse 50% 65% at 15% 85%, rgba(110, 151, 205, .15), transparent 80%),
+    linear-gradient(125deg, #f8fafc, #edf1f8 58%, #faf5f2);
+}
+
+:root[data-theme='light'] .glass-hero-copy > p {
+  color: #647083;
+}
+
+:root[data-theme='light'] .glass-hero-footer,
+:root[data-theme='light'] .glass-hero-bottom,
+:root[data-theme='light'] .glass-stage-caption {
+  color: #778395;
+}
+
+:root[data-theme='light'] .glass-hero-bottom {
+  border-color: rgba(80, 105, 140, .16);
+}
+
+:root[data-theme='light'] .glass-hero .glass-outline {
+  color: #202632;
+  border-color: rgba(90, 110, 140, .18);
+  background: rgba(255, 255, 255, .58);
+}
+
+:root[data-theme='light'] .glass-float-card {
+  color: #202632;
+  border-color: rgba(255, 255, 255, .85);
+  background: rgba(255, 255, 255, .74);
+  box-shadow: 0 18px 55px rgba(45, 60, 85, .1);
+}
+
+:root[data-theme='light'] .glass-float-card strong {
+  color: #202632;
+}
+
+:root[data-theme='light'] .glass-float-label,
+:root[data-theme='light'] .glass-float-sub {
+  color: #687488;
+}
+
+:root[data-theme='light'] .glass-stage-number {
+  -webkit-text-stroke-color: rgba(75, 95, 125, .16);
+}
+
+:root[data-theme='light'] .glass-orbit {
+  border-color: rgba(80, 105, 140, .12);
+}
+
+:root[data-theme='dark'] .glass-home {
+  background:
+    radial-gradient(ellipse 70% 25% at 88% 27%, rgba(244, 81, 22, .12), transparent 75%),
+    radial-gradient(ellipse 65% 30% at 8% 60%, rgba(82, 111, 158, .1), transparent 75%),
+    linear-gradient(165deg, #171b22, #252a33 45%, #1b2029);
+}
+
+:root[data-theme='dark'] .glass-award-card,
+:root[data-theme='dark'] .glass-photo-panel {
+  border-color: rgba(255, 255, 255, .12);
+  background: rgba(255, 255, 255, .055);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .18), inset 0 1px rgba(255, 255, 255, .06);
+}
+
+:root[data-theme='dark'] .glass-challenge-wrap .challenge-card {
+  border-color: rgba(255, 255, 255, .13);
+  background: rgba(255, 255, 255, .055);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .16), inset 0 1px rgba(255, 255, 255, .06);
+  backdrop-filter: blur(20px) saturate(135%);
+  -webkit-backdrop-filter: blur(20px) saturate(135%);
+}
+
+:root[data-theme='dark'] .glass-challenge-wrap:hover .challenge-card {
+  border-color: rgba(244, 81, 22, .4);
+  box-shadow: 0 25px 65px rgba(0, 0, 0, .24), 0 0 35px rgba(244, 81, 22, .06);
+}
+
+@media (max-width: 1050px) {
+  .glass-home {
+    --landing-gutter: clamp(16px, 1.8vw, 20px);
+  }
+
   .glass-hero-inner {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
+    gap: 24px;
   }
 
   .glass-hero h1 {
     font-size: clamp(52px, 6vw, 78px);
-  }
-
-  .glass-stage-number {
-    font-size: clamp(110px, 17vw, 240px);
-  }
-}
-
-@media (max-width: 850px) {
-  .glass-hero-inner {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .glass-hero-copy {
-    padding-block: 80px 10px;
-  }
-
-  .glass-hero-stage {
-    height: 420px;
-    max-width: 650px;
-    margin-inline: auto;
-  }
-
-  .glass-section-top {
-    flex-direction: column;
-    align-items: flex-start;
   }
 
   .glass-challenge-grid {
@@ -649,85 +1025,192 @@
 
   .glass-timeline {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 36px;
+    row-gap: 34px;
   }
 
   .glass-timeline::before {
     display: none;
   }
+}
+
+@media (max-width: 760px) {
+  .glass-hero {
+    min-height: 0;
+  }
+
+  .glass-hero-inner {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .glass-hero-copy {
+    padding-block: 68px 8px;
+  }
+
+  .glass-hero-stage {
+    width: 100%;
+    height: 390px;
+    margin-inline: auto;
+  }
+
+  .glass-stage-number {
+    font-size: clamp(150px, 31vw, 230px);
+  }
+
+  .glass-section-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .glass-award-grid {
+    gap: 16px;
+  }
+
+  .glass-award-art {
+    min-height: 270px;
+  }
+
+  .glass-medal-shape {
+    width: clamp(150px, 24vw, 210px);
+  }
+
+  .glass-photo-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .glass-photo-art {
+    min-height: 300px;
+  }
 
   .glass-statement {
     grid-template-columns: 1fr;
+    min-height: 0;
+    padding-block: 48px;
   }
 
   .glass-statement-graphic {
     flex-direction: row;
     justify-content: center;
-    gap: .2em;
-    font-size: clamp(48px, 9vw, 90px);
+    gap: .18em;
+    font-size: clamp(54px, 10vw, 88px);
   }
 }
 
 @media (max-width: 560px) {
-  .glass-hero-inner,
-  .glass-hero-bottom,
-  .glass-featured,
-  .glass-how,
-  .glass-statement,
-  .glass-final {
-    width: min(100% - 36px, 1440px);
+  .glass-home {
+    --landing-gutter: clamp(12px, 3vw, 16px);
   }
 
   .glass-hero-copy {
-    padding-block: 70px 0;
+    padding-block: 58px 0;
+  }
+
+  .glass-kicker,
+  .glass-section-label {
+    font-size: 9px;
+    letter-spacing: .12em;
   }
 
   .glass-hero h1 {
-    font-size: clamp(45px, 12vw, 70px);
+    margin-block: 22px;
+    font-size: clamp(46px, 12vw, 66px);
+  }
+
+  .glass-hero-actions {
+    align-items: stretch;
+  }
+
+  .glass-hero-actions > * {
+    flex: 1 1 100%;
+  }
+
+  .glass-hero-footer {
+    align-items: flex-start;
+    margin-top: 34px;
+    font-size: 8px;
+    line-height: 1.5;
   }
 
   .glass-hero-stage {
-    height: 330px;
+    height: 310px;
   }
 
   .glass-float-top {
-    width: 68%;
-    padding: 20px;
-    right: 0;
+    width: 70%;
+    padding: 18px;
   }
 
   .glass-float-top strong {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .glass-float-bottom {
-    width: 72%;
-    padding: 18px;
     bottom: 10%;
+    width: 78%;
+    padding: 16px;
   }
 
   .glass-float-bottom strong {
-    font-size: 18px;
+    font-size: 16px;
+  }
+
+  .glass-stage-caption {
+    right: 4%;
+    font-size: 8px;
   }
 
   .glass-hero-bottom {
     flex-wrap: wrap;
-    gap: 12px;
-    font-size: 9px;
+    justify-content: flex-start;
+    gap: 10px 18px;
+    padding-block: 16px;
+    font-size: 8px;
   }
 
   .glass-scroll-label {
     display: none;
   }
 
+  .glass-awards,
   .glass-featured,
   .glass-how {
-    padding-block: 75px;
+    padding-block: 68px;
   }
 
+  .glass-section-top h2,
+  .glass-how-heading h2,
+  .glass-final h2 {
+    font-size: clamp(36px, 9vw, 50px);
+  }
+
+  .glass-section-top p,
+  .glass-how-heading p,
+  .glass-final p {
+    font-size: 15px;
+  }
+
+  .glass-award-grid,
   .glass-challenge-grid,
   .glass-timeline {
     grid-template-columns: 1fr;
+  }
+
+  .glass-award-art {
+    min-height: 265px;
+  }
+
+  .glass-medal-shape {
+    width: 155px;
+  }
+
+  .glass-kit-box {
+    width: 175px;
+  }
+
+  .glass-how-heading {
+    margin-bottom: 40px;
   }
 
   .glass-timeline {
@@ -735,32 +1218,31 @@
   }
 
   .glass-timeline-step {
-    padding: 0 0 12px;
+    padding: 0;
   }
 
   .glass-timeline-marker {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
-  .glass-how-heading {
-    margin-bottom: 42px;
+  .glass-photo {
+    padding-block: 8px 60px;
   }
 
-  .glass-statement {
-    padding: 36px 24px;
-    border-radius: 24px;
+  .glass-photo-art {
+    min-height: 235px;
   }
 
-  .glass-statement h2 {
-    font-size: clamp(30px, 8vw, 44px);
+  .glass-photo-copy {
+    padding: 24px;
   }
 
-  .glass-statement-graphic {
-    font-size: clamp(36px, 10vw, 55px);
+  .glass-photo-word {
+    font-size: 68px;
   }
 
   .glass-final {
-    padding-block: 95px;
+    padding-block: 60px 90px;
   }
 }
 
@@ -769,732 +1251,7 @@
   .glass-home *::before,
   .glass-home *::after {
     animation: none !important;
-    transition: none !important;
     scroll-behavior: auto !important;
+    transition: none !important;
   }
-}
-
-
-/* CLICKSPORTBR ATMOSPHERIC GLASS V3 */
-
-/* Atmosfera contínua nas seções da landing */
-.glass-home {
-  position: relative;
-  isolation: isolate;
-  background:
-    radial-gradient(
-      ellipse 65% 28% at 92% 34%,
-      rgba(244, 81, 22, .075),
-      transparent 75%
-    ),
-    radial-gradient(
-      ellipse 60% 24% at 6% 65%,
-      rgba(92, 122, 163, .065),
-      transparent 75%
-    ),
-    var(--color-background);
-}
-
-/* Tema escuro: vidro e iluminação ambiente */
-:root[data-theme='dark'] .glass-home {
-  background:
-    radial-gradient(
-      ellipse 70% 25% at 88% 27%,
-      rgba(244, 81, 22, .13),
-      transparent 75%
-    ),
-    radial-gradient(
-      ellipse 65% 30% at 8% 60%,
-      rgba(82, 111, 158, .11),
-      transparent 75%
-    ),
-    radial-gradient(
-      ellipse 55% 22% at 78% 86%,
-      rgba(244, 81, 22, .07),
-      transparent 75%
-    ),
-    linear-gradient(
-      165deg,
-      #171b22 0%,
-      #252a33 45%,
-      #1b2029 100%
-    );
-}
-
-/* Seções transparentes para revelar o fundo */
-:root[data-theme='dark'] .glass-home .glass-featured,
-:root[data-theme='dark'] .glass-home .glass-how,
-:root[data-theme='dark'] .glass-home .glass-final {
-  background: transparent;
-}
-
-/* Cards com vidro fosco */
-:root[data-theme='dark'] .glass-home .challenge-card {
-  background: rgba(255, 255, 255, .055);
-  border: 1px solid rgba(255, 255, 255, .13);
-  box-shadow:
-    0 18px 50px rgba(0, 0, 0, .16),
-    inset 0 1px rgba(255, 255, 255, .06);
-  backdrop-filter: blur(20px) saturate(135%);
-  -webkit-backdrop-filter: blur(20px) saturate(135%);
-}
-
-:root[data-theme='dark'] .glass-home .challenge-card:hover {
-  border-color: rgba(244, 81, 22, .35);
-  box-shadow:
-    0 25px 65px rgba(0, 0, 0, .24),
-    0 0 35px rgba(244, 81, 22, .055);
-}
-
-/* Controles translúcidos */
-:root[data-theme='dark'] .glass-home .preview-card-expand,
-:root[data-theme='dark'] .glass-home .preview-card-actions .button-secondary {
-  background: rgba(255, 255, 255, .045);
-  border-color: rgba(255, 255, 255, .13);
-  color: #f5f5f5;
-}
-
-/* Pequeno reflexo no manifesto */
-:root[data-theme='dark'] .glass-home .glass-statement {
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, .22),
-    inset 0 1px rgba(255, 255, 255, .10);
-}
-
-/* Não compromete acessibilidade nem desempenho */
-@media (prefers-reduced-motion: reduce) {
-  .glass-home,
-  .glass-home * {
-    scroll-behavior: auto;
-  }
-}
-
-
-/* CLICKSPORTBR WIDE GLASS V4 */
-
-/* Área de conteúdo mais ampla e fluida */
-.glass-home {
-  --landing-wide: 1600px;
-  --landing-gutter: clamp(24px, 4.5vw, 88px);
-}
-
-/* Amplia os containers internos sem mudar o hero */
-.glass-home .glass-featured,
-.glass-home .glass-how,
-.glass-home .glass-final {
-  max-width: none;
-}
-
-/* Conteúdo ocupa mais espaço horizontal */
-.glass-home .glass-featured > *,
-.glass-home .glass-how > * {
-  width: min(
-    calc(100% - 2 * var(--landing-gutter)),
-    var(--landing-wide)
-  );
-  max-width: none;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Cards com largura mais expressiva */
-.glass-home .glass-challenge-grid {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(min(100%, 320px), 1fr)
-  );
-  gap: clamp(18px, 2vw, 30px);
-  width: 100%;
-}
-
-/* Manifesto mais panorâmico */
-.glass-home .glass-statement {
-  width: min(
-    calc(100% - 2 * var(--landing-gutter)),
-    var(--landing-wide)
-  );
-  max-width: none;
-  margin-inline: auto;
-}
-
-/* Evita que a versão mobile fique apertada */
-@media (max-width: 700px) {
-  .glass-home {
-    --landing-gutter: 16px;
-  }
-
-  .glass-home .glass-challenge-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* CLICKSPORTBR EDITORIAL WIDE V7 */
-
-/*
- * Um único sistema de margens para toda a landing.
- * Evita containers aninhados reduzindo a largura útil.
- */
-
-.glass-home {
-  --editorial-gutter: clamp(18px, 2.8vw, 54px);
-  --editorial-width: 1920px;
-}
-
-/* Hero, rodapé do hero e seções usam a mesma largura */
-.glass-home .glass-hero-inner,
-.glass-home .glass-hero-bottom,
-.glass-home .glass-featured,
-.glass-home .glass-how,
-.glass-home .glass-statement,
-.glass-home .glass-final {
-  width: min(
-    calc(100% - 2 * var(--editorial-gutter)),
-    var(--editorial-width)
-  );
-  max-width: none;
-  margin-inline: auto;
-}
-
-/* Remove a segunda camada de margens criada na V4 */
-.glass-home .glass-featured > *,
-.glass-home .glass-how > * {
-  width: 100%;
-  max-width: none;
-  margin-inline: 0;
-}
-
-/* Mantém textos legíveis sem limitar toda a seção */
-.glass-home .glass-how-heading {
-  max-width: 900px;
-}
-
-.glass-home .glass-hero-inner {
-  grid-template-columns:
-    minmax(0, 1.05fr)
-    minmax(0, .95fr);
-  gap: clamp(24px, 4vw, 80px);
-}
-
-.glass-home .glass-hero-copy {
-  min-width: 0;
-}
-
-.glass-home .glass-hero h1 {
-  max-width: 980px;
-  font-size: clamp(54px, 6.1vw, 122px);
-}
-
-/* Galeria panorâmica */
-.glass-home .glass-challenge-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(16px, 1.6vw, 30px);
-  width: 100%;
-}
-
-.glass-home .glass-challenge-wrap {
-  min-width: 0;
-}
-
-/* Seção de etapas distribuída por toda a largura */
-.glass-home .glass-timeline {
-  width: 100%;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(14px, 2vw, 40px);
-}
-
-.glass-home .glass-timeline-step {
-  min-width: 0;
-}
-
-.glass-home .glass-timeline-step p {
-  max-width: 330px;
-}
-
-/* Manifesto mais largo, com composição equilibrada */
-.glass-home .glass-statement {
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(0, .9fr);
-  min-height: 550px;
-}
-
-.glass-home .glass-statement-graphic {
-  font-size: clamp(85px, 10vw, 180px);
-}
-
-/* Mantém a chamada final ampla, sem esticar o texto */
-.glass-home .glass-final h2 {
-  max-width: 1100px;
-  margin-inline: auto;
-}
-
-/* Tablet */
-@media (max-width: 1050px) {
-  .glass-home .glass-challenge-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .glass-home .glass-hero-inner {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .glass-home .glass-statement {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* Mobile */
-@media (max-width: 850px) {
-  .glass-home .glass-hero-inner {
-    grid-template-columns: 1fr;
-  }
-
-  .glass-home .glass-timeline {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .glass-home .glass-statement {
-    grid-template-columns: 1fr;
-  }
-
-  .glass-home .glass-statement-graphic {
-    font-size: clamp(48px, 9vw, 90px);
-  }
-}
-
-@media (max-width: 560px) {
-  .glass-home {
-    --editorial-gutter: 18px;
-  }
-
-  .glass-home .glass-challenge-grid,
-  .glass-home .glass-timeline {
-    grid-template-columns: 1fr;
-  }
-
-  .glass-home .glass-hero h1 {
-    font-size: clamp(45px, 12vw, 70px);
-  }
-}
-
-/* CLICKSPORTBR FLUID MANIFESTO V11 */
-
-/* Mantém o manifesto como uma seção editorial sem moldura */
-.glass-home .glass-statement {
-  position: relative;
-  isolation: isolate;
-  overflow: visible;
-
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
-  align-items: center;
-
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-/*
- * O halo usa um pseudo-elemento.
- * Não interfere na ordem ou posição dos elementos React.
- */
-.glass-home .glass-statement::before {
-  content: "";
-  position: absolute;
-  inset: -12% -4%;
-  z-index: -1;
-  pointer-events: none;
-
-  background:
-    radial-gradient(
-      ellipse 46% 65% at 82% 44%,
-      rgba(244, 81, 22, .14),
-      transparent 85%
-    ),
-    radial-gradient(
-      ellipse 45% 75% at 18% 60%,
-      rgba(75, 105, 155, .075),
-      transparent 90%
-    );
-
-  filter: blur(34px);
-  opacity: .9;
-}
-
-/* O texto permanece na esquerda e o grafismo na direita */
-.glass-home .glass-statement > :first-child {
-  grid-column: 1;
-  grid-row: 1;
-  min-width: 0;
-}
-
-.glass-home .glass-statement > :last-child {
-  grid-column: 2;
-  grid-row: 1;
-  min-width: 0;
-}
-
-/* Tema claro */
-:root[data-theme='light'] .glass-home .glass-statement::before {
-  opacity: .55;
-}
-
-/* Tablet e celular */
-@media (max-width: 850px) {
-  .glass-home .glass-statement {
-    grid-template-columns: 1fr;
-  }
-
-  .glass-home .glass-statement > :first-child,
-  .glass-home .glass-statement > :last-child {
-    grid-column: 1;
-    grid-row: auto;
-  }
-}
-
-@media (max-width: 560px) {
-  .glass-home .glass-statement::before {
-    inset: -8% 0;
-    filter: blur(24px);
-  }
-}
-
-/*
- * CLICKSPORTBR — IDENTIDADE VISUAL / TEMA CLARO
- *
- * Versão visual aprovada:
- * - atmosfera gelo e azul suave
- * - iluminação coral
- * - cards translúcidos
- * - manifesto integrado, sem moldura
- *
- * Escopo exclusivo: data-theme='light'
- * O modo escuro permanece independente.
- */
-
-/*
- * Refinamento exclusivo do tema claro.
- * Preserva o hero escuro e a composição do manifesto.
- */
-
-:root[data-theme='light'] .glass-home {
-  background:
-    radial-gradient(
-      ellipse 65% 25% at 88% 33%,
-      rgba(244, 81, 22, .075),
-      transparent 78%
-    ),
-    radial-gradient(
-      ellipse 60% 30% at 8% 67%,
-      rgba(91, 126, 178, .085),
-      transparent 80%
-    ),
-    linear-gradient(
-      160deg,
-      #f9fafc 0%,
-      #f0f3f8 54%,
-      #f8f9fc 100%
-    );
-}
-
-/* Manifesto sem moldura, mas com contraste adequado */
-:root[data-theme='light'] .glass-home .glass-statement {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  color: #202632;
-}
-
-/* Título e texto do manifesto */
-:root[data-theme='light'] .glass-home .glass-statement h2 {
-  color: #202632;
-}
-
-:root[data-theme='light'] .glass-home .glass-statement p {
-  color: #626b79;
-}
-
-/* Mantém os destaques laranja */
-:root[data-theme='light'] .glass-home .glass-statement em,
-:root[data-theme='light'] .glass-home .glass-statement strong {
-  color: #f4511e;
-}
-
-/* Grafismo GO BEYOND */
-:root[data-theme='light'] .glass-home .glass-statement-graphic {
-  color: #f4511e;
-}
-
-/* Halo mais suave e integrado ao fundo claro */
-:root[data-theme='light'] .glass-home .glass-statement::before {
-  background:
-    radial-gradient(
-      ellipse 48% 68% at 82% 44%,
-      rgba(244, 81, 22, .12),
-      transparent 85%
-    ),
-    radial-gradient(
-      ellipse 48% 72% at 18% 60%,
-      rgba(95, 130, 180, .075),
-      transparent 90%
-    );
-  opacity: .85;
-}
-
-/* Cards com aparência de vidro claro */
-:root[data-theme='light'] .glass-home .challenge-card {
-  background: rgba(255, 255, 255, .78);
-  border: 1px solid rgba(95, 110, 135, .12);
-  box-shadow:
-    0 16px 45px rgba(34, 45, 65, .055),
-    inset 0 1px rgba(255, 255, 255, .8);
-
-  backdrop-filter: blur(18px) saturate(125%);
-  -webkit-backdrop-filter: blur(18px) saturate(125%);
-}
-
-:root[data-theme='light'] .glass-home .challenge-card:hover {
-  border-color: rgba(244, 81, 22, .3);
-  box-shadow:
-    0 22px 55px rgba(34, 45, 65, .09),
-    0 0 28px rgba(244, 81, 22, .045);
-}
-
-/* Separadores discretos */
-:root[data-theme='light'] .glass-home .glass-featured,
-:root[data-theme='light'] .glass-home .glass-how {
-  border-color: rgba(85, 105, 140, .10);
-}
-
-/* CLICKSPORTBR HERO CLARO DEFINITIVO */
-
-/* Fundo gelo com iluminação coral */
-:root[data-theme='light'] .glass-home .glass-hero {
-  background:
-    radial-gradient(
-      ellipse 48% 70% at 82% 48%,
-      rgba(244, 81, 22, .16),
-      transparent 78%
-    ),
-    radial-gradient(
-      ellipse 50% 65% at 15% 85%,
-      rgba(110, 151, 205, .17),
-      transparent 80%
-    ),
-    linear-gradient(125deg, #f8fafc, #edf1f8 58%, #faf5f2);
-
-  color: #202632;
-}
-
-/* Textos do hero */
-:root[data-theme='light'] .glass-home .glass-hero h1 {
-  color: #202632;
-}
-
-:root[data-theme='light'] .glass-home .glass-hero h1 span {
-  color: #f4511e;
-}
-
-:root[data-theme='light'] .glass-home .glass-hero-copy > p {
-  color: #647083;
-}
-
-/* Elementos secundários */
-:root[data-theme='light'] .glass-home .glass-hero-footer,
-:root[data-theme='light'] .glass-home .glass-hero-bottom,
-:root[data-theme='light'] .glass-home .glass-stage-caption {
-  color: #778395;
-}
-
-/* Botão secundário */
-:root[data-theme='light'] .glass-home .glass-hero .glass-outline {
-  background: rgba(255, 255, 255, .58);
-  color: #202632;
-  border-color: rgba(90, 110, 140, .12);
-  backdrop-filter: blur(16px);
-}
-
-/* Cartões flutuantes */
-:root[data-theme='light'] .glass-home .glass-float-card {
-  background: rgba(255, 255, 255, .72);
-  color: #202632;
-  border-color: rgba(255, 255, 255, .85);
-  box-shadow: 0 18px 55px rgba(45, 60, 85, .10);
-  backdrop-filter: blur(22px) saturate(130%);
-  -webkit-backdrop-filter: blur(22px) saturate(130%);
-}
-
-:root[data-theme='light'] .glass-home .glass-float-card strong {
-  color: #202632;
-}
-
-:root[data-theme='light'] .glass-home .glass-float-label,
-:root[data-theme='light'] .glass-home .glass-float-sub {
-  color: #687488;
-}
-
-/* Grafismo RUN e órbitas */
-:root[data-theme='light'] .glass-home .glass-stage-number {
-  -webkit-text-stroke-color: rgba(75, 95, 125, .13);
-}
-
-:root[data-theme='light'] .glass-home .glass-orbit {
-  border-color: rgba(80, 105, 140, .11);
-}
-
-/* Luzes ambientes mais delicadas */
-:root[data-theme='light'] .glass-home .glass-ambient-one {
-  background: rgba(244, 81, 22, .16);
-}
-
-:root[data-theme='light'] .glass-home .glass-ambient-two {
-  background: rgba(100, 145, 205, .15);
-}
-
-/* FIM CLICKSPORTBR HERO CLARO DEFINITIVO */
-
-/* CLICKSPORTBR — BOTOES DE PRE-VISUALIZACAO */
-
-.glass-home .preview-card-actions .button-secondary {
-  background: #f4511e;
-  color: #ffffff;
-  border: 1px solid #f4511e;
-  box-shadow: 0 5px 18px rgba(244, 81, 30, 0.18);
-  transition:
-    background 0.25s ease,
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.glass-home .preview-card-actions .button-secondary:hover {
-  background: #e34413;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 9px 25px rgba(244, 81, 30, 0.28);
-}
-
-.glass-home .preview-card-expand {
-  background: rgba(255, 255, 255, 0.55);
-  color: #f4511e;
-  border: 1px solid rgba(120, 135, 155, 0.20);
-}
-
-:root[data-theme='dark'] .glass-home .preview-card-expand {
-  background: rgba(255, 255, 255, 0.06);
-  color: #ff7043;
-}
-
-
-/* CLICKSPORTBR — CTA LARANJA NO MODO ESCURO */
-
-:root[data-theme='dark'] .glass-home .preview-card-actions .button-secondary {
-  background: #f4511e;
-  color: #ffffff;
-  border: 1px solid #f4511e;
-  box-shadow: 0 6px 22px rgba(244, 81, 30, 0.22);
-}
-
-:root[data-theme='dark'] .glass-home .preview-card-actions .button-secondary:hover {
-  background: #ff6335;
-  color: #ffffff;
-  border-color: #ff6335;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(244, 81, 30, 0.35);
-}
-
-:root[data-theme='dark'] .glass-home .preview-card-actions .button-secondary:focus-visible {
-  outline: 2px solid #ff906e;
-  outline-offset: 3px;
-}
-
-
-/* CLICKSPORTBR — ALINHAMENTO DOS BOTOES DOS DESAFIOS */
-
-.glass-home .preview-card-actions {
-  display: flex;
-  align-items: stretch;
-  gap: 8px;
-}
-
-.glass-home .preview-card-actions .button-secondary {
-  flex: 1 1 auto;
-  min-width: 0;
-  height: 46px;
-  min-height: 46px;
-  padding: 0 16px;
-  border-radius: 11px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.glass-home .preview-card-actions .preview-card-expand,
-:root[data-theme='dark'] .glass-home .preview-card-actions .preview-card-expand {
-  flex: 0 0 46px;
-  width: 46px;
-  height: 46px;
-  min-width: 46px;
-  min-height: 46px;
-  padding: 0;
-  border-radius: 11px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(244, 81, 30, 0.12);
-  border: 1px solid rgba(244, 81, 30, 0.28);
-  color: #ff7043;
-  box-shadow: none;
-  transition:
-    background 0.25s ease,
-    transform 0.25s ease;
-}
-
-.glass-home .preview-card-actions .preview-card-expand:hover {
-  background: rgba(244, 81, 30, 0.22);
-  transform: translateY(-2px);
-}
-
-
-/* CLICKSPORTBR — ALINHAMENTO FINAL DOS BOTOES */
-
-.glass-home .preview-card-actions {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 46px;
-  align-items: stretch;
-  gap: 8px;
-}
-
-.glass-home .preview-card-actions > .button-secondary,
-.glass-home .preview-card-actions > .preview-card-expand {
-  box-sizing: border-box;
-  width: 100%;
-  height: 46px;
-  min-height: 46px;
-  max-height: 46px;
-  margin: 0;
-  padding-block: 0;
-  align-self: stretch;
-  vertical-align: middle;
-  line-height: 1;
-  transform: none;
-}
-
-.glass-home .preview-card-actions > .button-secondary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.glass-home .preview-card-actions > .preview-card-expand {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
 }

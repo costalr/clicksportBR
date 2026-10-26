@@ -1,5 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { supabase } from '../lib/supabase'
+import { AdminChallengesPanel } from '../features/admin/AdminChallengesPanel'
+import { AdminOffersPanel } from '../features/admin/AdminOffersPanel'
+import { AdminProductsPanel } from '../features/admin/AdminProductsPanel'
+import { AdminOverviewPanel } from '../features/admin/AdminOverviewPanel'
 import './admin-dashboard.css'
 
 type Status = 'pendente' | 'em_analise' | 'aprovado' | 'rejeitado'
@@ -123,7 +127,35 @@ function formatDate(value: string | null | undefined) {
     : date.toLocaleDateString('pt-BR')
 }
 
-export function AdminDashboardPage() {
+async function fetchReviewData() {
+  const [evidenceResult, enrollmentResult, profileResult, challengeResult] =
+    await Promise.all([
+      supabase.from('comprovantes').select('*'),
+      supabase.from('inscricoes').select('*'),
+      supabase.from('perfis').select('*'),
+      supabase.from('desafios').select('*'),
+    ])
+
+  const failures = [
+    evidenceResult.error,
+    enrollmentResult.error,
+    profileResult.error,
+    challengeResult.error,
+  ].filter(Boolean)
+
+  if (failures.length) {
+    throw new Error(failures.map((item) => item?.message).join(' | '))
+  }
+
+  return {
+    items: (evidenceResult.data ?? []) as Evidence[],
+    enrollments: (enrollmentResult.data ?? []) as Enrollment[],
+    profiles: (profileResult.data ?? []) as Profile[],
+    challenges: (challengeResult.data ?? []) as Challenge[],
+  }
+}
+
+function ProofReviewPanel() {
   const [items, setItems] = useState<Evidence[]>([])
   const [enrollments, setEnrollments] = useState<Enrollment[]>([])
   const [profiles, setProfiles] = useState<Profile[]>([])
@@ -138,7 +170,7 @@ export function AdminDashboardPage() {
   const [saving, setSaving] = useState(false)
   const [feedback, setFeedback] = useState('')
   const [draftUserId, setDraftUserId] = useState<string | null>(null)
-  const [restoredDraft, setRestoredDraft] = useState(false)
+  const restoredDraft = useRef(false)
 
   useEffect(() => {
     let active = true
@@ -149,69 +181,72 @@ export function AdminDashboardPage() {
   }, [])
 
   const load = useCallback(async () => {
-    setLoading(true)
-    setError('')
-
-    const [evidenceResult, enrollmentResult, profileResult, challengeResult] =
-      await Promise.all([
-        supabase.from('comprovantes').select('*'),
-        supabase.from('inscricoes').select('*'),
-        supabase.from('perfis').select('*'),
-        supabase.from('desafios').select('*'),
-      ])
-
-    const failures = [
-      evidenceResult.error,
-      enrollmentResult.error,
-      profileResult.error,
-      challengeResult.error,
-    ].filter(Boolean)
-
-    if (failures.length) {
-      setError(failures.map((item) => item?.message).join(' | '))
+    try {
+      const data = await fetchReviewData()
+      setItems(data.items)
+      setEnrollments(data.enrollments)
+      setProfiles(data.profiles)
+      setChallenges(data.challenges)
+      setError('')
       setLoading(false)
-      return
+    } catch (loadError) {
+      setError(loadError instanceof Error ? loadError.message : 'Não foi possível carregar os comprovantes.')
+      setLoading(false)
     }
-
-    setItems((evidenceResult.data ?? []) as Evidence[])
-    setEnrollments((enrollmentResult.data ?? []) as Enrollment[])
-    setProfiles((profileResult.data ?? []) as Profile[])
-    setChallenges((challengeResult.data ?? []) as Challenge[])
-    setLoading(false)
   }, [])
 
   useEffect(() => {
-    void load()
-  }, [load])
+    let active = true
+    void fetchReviewData()
+      .then((data) => {
+        if (!active) return
+        setItems(data.items)
+        setEnrollments(data.enrollments)
+        setProfiles(data.profiles)
+        setChallenges(data.challenges)
+      })
+      .catch((loadError: unknown) => {
+        if (active) setError(loadError instanceof Error ? loadError.message : 'Não foi possível carregar os comprovantes.')
+      })
+      .finally(() => {
+        if (active) setLoading(false)
+      })
+    return () => { active = false }
+  }, [])
 
   useEffect(() => {
-    if (loading || !draftUserId || restoredDraft) return
+    if (loading || !draftUserId || restoredDraft.current) return
 
-    setRestoredDraft(true)
-    const draft = readReviewDraft()
-    if (!draft) return
+    let active = true
+    queueMicrotask(() => {
+      if (!active || restoredDraft.current) return
+      restoredDraft.current = true
+      const draft = readReviewDraft()
+      if (!draft) return
 
-    if (draft.userId !== draftUserId) {
-      clearReviewDraft()
-      return
-    }
+      if (draft.userId !== draftUserId) {
+        clearReviewDraft()
+        return
+      }
 
-    const evidence = items.find((item) =>
-      item.id === draft.evidenceId &&
-      item.versao_atual === draft.version &&
-      (item.status === 'pendente' || item.status === 'em_analise')
-    )
+      const evidence = items.find((item) =>
+        item.id === draft.evidenceId &&
+        item.versao_atual === draft.version &&
+        (item.status === 'pendente' || item.status === 'em_analise')
+      )
 
-    if (!evidence || !reasons.some((item) => item.value === draft.reason)) {
-      clearReviewDraft()
-      return
-    }
+      if (!evidence || !reasons.some((item) => item.value === draft.reason)) {
+        clearReviewDraft()
+        return
+      }
 
-    setSelected(evidence)
-    setDecision(draft.decision)
-    setReason(draft.reason)
-    setDetail(draft.detail)
-  }, [loading, draftUserId, restoredDraft, items])
+      setSelected(evidence)
+      setDecision(draft.decision)
+      setReason(draft.reason)
+      setDetail(draft.detail)
+    })
+    return () => { active = false }
+  }, [loading, draftUserId, items])
 
   useEffect(() => {
     if (!selected || !draftUserId || saving) return
@@ -344,7 +379,11 @@ export function AdminDashboardPage() {
           <h1>Painel de validação</h1>
           <p>Analise os comprovantes de atividade dos participantes.</p>
         </div>
-        <button type="button" className="admin-refresh" onClick={() => void load()}>
+        <button type="button" className="admin-refresh" onClick={() => {
+          setLoading(true)
+          setError('')
+          void load()
+        }}>
           Atualizar lista
         </button>
       </div>
@@ -543,5 +582,48 @@ export function AdminDashboardPage() {
         </div>
       )}
     </main>
+  )
+}
+
+type AdminSection = 'overview' | 'challenges' | 'products' | 'offers' | 'evidence'
+
+const adminSections: { id: AdminSection; label: string }[] = [
+  { id: 'overview', label: 'Visão geral' },
+  { id: 'challenges', label: 'Desafios' },
+  { id: 'products', label: 'Produtos' },
+  { id: 'offers', label: 'Ofertas e kits' },
+  { id: 'evidence', label: 'Comprovantes' },
+]
+
+export function AdminDashboardPage() {
+  const [section, setSection] = useState<AdminSection>('overview')
+
+  return (
+    <div className="admin-shell">
+      <header className="admin-shell-header">
+        <div>
+          <p className="admin-eyebrow">ClicksportBR · Administração</p>
+          <h1>Gestão da plataforma</h1>
+        </div>
+        <nav className="admin-navigation" aria-label="Navegação administrativa">
+          {adminSections.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className={section === item.id ? 'is-active' : ''}
+              aria-current={section === item.id ? 'page' : undefined}
+              onClick={() => setSection(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+      </header>
+      {section === 'overview' && <AdminOverviewPanel onNavigate={(next) => setSection(next)} />}
+      {section === 'challenges' && <AdminChallengesPanel />}
+      {section === 'products' && <AdminProductsPanel />}
+      {section === 'offers' && <AdminOffersPanel />}
+      {section === 'evidence' && <ProofReviewPanel />}
+    </div>
   )
 }

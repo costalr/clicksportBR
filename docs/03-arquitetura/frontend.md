@@ -20,14 +20,18 @@
 
 ## Dados dos desafios
 
-A interface utiliza `challengeService.ts` para obter
-dados demonstrativos.
+A área pública consulta `public.desafios` por meio de
+`challengeService.ts`. As consultas retornam somente
+desafios publicados; listagem, página inicial e detalhes
+tratam carregamento, erro e ausência de resultados.
+`mockChallenges.ts` permanece preservado para testes.
 
-A fonte atual é `mockChallenges.ts`.
-
-A integração futura com Supabase exigirá adaptar
-o serviço para operações assíncronas e definir
-estados de carregamento e erro.
+O catálogo administrativo lê rascunhos e permite criar
+e atualizar desafios, produtos e ofertas. A migration
+`202610240017_admin_desafios.sql` precisa ser revisada e
+aplicada manualmente; esta implementação não a executa.
+Uploads, checkout, pagamentos e inscrições comerciais
+permanecem fora do escopo.
 
 ## Navegação
 
@@ -35,6 +39,11 @@ Rotas públicas:
 - `/`
 - `/desafios`
 - `/desafios/:slug`
+
+`/admin` é protegida por `AuthGate admin` e inclui
+visão geral, desafios, produtos, ofertas e comprovantes.
+O fluxo existente de avaliação de comprovantes permanece
+disponível nessa área.
 
 Existe uma rota de página não encontrada.
 

@@ -79,9 +79,24 @@ function RevealSection({
 }
 
 export function HomePage() {
-  const featured = listChallenges()
-    .filter((challenge) => challenge.modality === 'Corrida')
-    .slice(0, 6)
+  const [featured, setFeatured] = useState<Awaited<ReturnType<typeof listChallenges>>>([])
+  const [challengesLoading, setChallengesLoading] = useState(true)
+  const [challengesError, setChallengesError] = useState('')
+
+  useEffect(() => {
+    let active = true
+    void listChallenges()
+      .then((items) => {
+        if (active) setFeatured(items.filter((challenge) => challenge.modality === 'Corrida').slice(0, 3))
+      })
+      .catch((loadError: unknown) => {
+        if (active) setChallengesError(loadError instanceof Error ? loadError.message : 'Não foi possível carregar os desafios.')
+      })
+      .finally(() => {
+        if (active) setChallengesLoading(false)
+      })
+    return () => { active = false }
+  }, [])
 
   return (
     <main className="glass-home">
@@ -93,33 +108,33 @@ export function HomePage() {
           <div className="glass-hero-copy">
             <span className="glass-kicker">
               <span className="glass-kicker-dot" />
-              CLICKSPORTBR / DESAFIOS DE CORRIDA
+              CLICKSPORTBR / DESAFIOS VIRTUAIS DE CORRIDA
             </span>
 
             <h1>
-              A próxima
+              Sua próxima
               <span> conquista </span>
-              começa em você.
+              tem história.
             </h1>
 
             <p>
-              Transforme seus quilômetros em novas metas.
-              Descubra desafios virtuais de corrida e acompanhe
-              cada etapa da sua jornada.
+              Encontre um desafio de corrida, avance no seu ritmo e celebre
+              cada meta. Inspire-se nos conceitos visuais de medalhas e kits
+              criados para celebrar cada conquista.
             </p>
 
             <div className="glass-hero-actions">
               <Link to="/desafios" className="glass-primary">
-                Explorar desafios <span aria-hidden="true">↗</span>
+                Encontrar meu desafio <span aria-hidden="true">↗</span>
               </Link>
-              <a href="#como-funciona" className="glass-outline">
-                Como funciona <span aria-hidden="true">↓</span>
+              <a href="#medalhas-kits" className="glass-outline">
+                Ver medalhas e kits <span aria-hidden="true">↓</span>
               </a>
             </div>
 
             <div className="glass-hero-footer">
               <span className="glass-footer-line" />
-              <span>SEU RITMO. SUA DISTÂNCIA. SUA HISTÓRIA.</span>
+              <span>SEU RITMO. SUA META. UMA CONQUISTA PARA CELEBRAR.</span>
             </div>
           </div>
 
@@ -131,45 +146,94 @@ export function HomePage() {
             <div className="glass-stage-number">RUN</div>
 
             <div className="glass-float-card glass-float-top">
-              <span className="glass-float-label">SEU PRÓXIMO OBJETIVO</span>
-              <strong>VÁ MAIS LONGE.</strong>
-              <span className="glass-float-sub">UMA CONQUISTA DE CADA VEZ</span>
+              <span className="glass-float-label">CADA META CONTA</span>
+              <strong>VÁ ALÉM.</strong>
+              <span className="glass-float-sub">DESAFIOS VIRTUAIS</span>
             </div>
 
             <div className="glass-float-card glass-float-bottom">
               <span className="glass-pulse" />
               <div>
-                <span className="glass-float-label">MODO DESAFIO</span>
-                <strong>ATIVADO</strong>
+                <span className="glass-float-label">UMA CONQUISTA DE CADA VEZ</span>
+                <strong>SEU PRÓXIMO DESAFIO</strong>
               </div>
               <span className="glass-float-arrow">↗</span>
             </div>
 
             <span className="glass-stage-caption">
-              MOVE FORWARD / CLICKSPORTBR
+              RUN / ACHIEVE / CLICKSPORTBR
             </span>
           </div>
         </div>
 
         <div className="glass-hero-bottom" aria-hidden="true">
-          <span>01 — DESCUBRA</span>
+          <span>01 — ESCOLHA</span>
           <span>02 — CORRA</span>
-          <span>03 — CONQUISTE</span>
+          <span>03 — CELEBRE</span>
           <span className="glass-scroll-label">ROLE PARA EXPLORAR ↓</span>
         </div>
       </section>
 
+      <RevealSection className="glass-awards" id="medalhas-kits">
+        <div className="glass-section-top">
+          <div>
+            <span className="glass-section-label">01 / CELEBRE SUA CONQUISTA</span>
+            <h2>
+              Cada quilômetro merece
+              <em> uma lembrança.</em>
+            </h2>
+            <p>
+              Medalhas e kits inspiram a celebração de cada meta. As imagens
+              abaixo são conceitos visuais ilustrativos, não fotos de produtos
+              finais nem confirmação de disponibilidade.
+            </p>
+          </div>
+        </div>
+
+        <div className="glass-award-grid">
+          <article className="glass-award-card">
+            <div className="glass-award-art glass-medal-art" aria-hidden="true">
+              <span className="glass-medal-ribbon" />
+              <span className="glass-medal-shape">
+                <span>CONQUISTA</span>
+              </span>
+              <span className="glass-art-index">01 / CONCEITO VISUAL</span>
+            </div>
+            <div className="glass-award-copy">
+              <span className="glass-section-label">MEDALHAS</span>
+              <h3>Uma lembrança da sua jornada.</h3>
+              <p>Conceito ilustrativo; não representa um modelo final ou disponibilidade.</p>
+            </div>
+          </article>
+          <article className="glass-award-card">
+            <div className="glass-award-art glass-kit-art" aria-hidden="true">
+              <span className="glass-kit-box">
+                <span className="glass-kit-box-mark">C</span>
+              </span>
+              <span className="glass-kit-orbit glass-kit-orbit-one" />
+              <span className="glass-kit-orbit glass-kit-orbit-two" />
+              <span className="glass-art-index">02 / CONCEITO VISUAL</span>
+            </div>
+            <div className="glass-award-copy">
+              <span className="glass-section-label">KITS DE PREMIAÇÃO</span>
+              <h3>Uma experiência feita para celebrar.</h3>
+              <p>Conceito ilustrativo; itens e disponibilidade não estão definidos aqui.</p>
+            </div>
+          </article>
+        </div>
+      </RevealSection>
+
       <RevealSection className="glass-featured">
         <div className="glass-section-top">
           <div>
-            <span className="glass-section-label">01 / SUA PRÓXIMA META</span>
+            <span className="glass-section-label">02 / SUA PRÓXIMA META</span>
             <h2>
-              Desafios que fazem
-              <em> você avançar.</em>
+              Um desafio para
+              <em> ir mais longe.</em>
             </h2>
             <p>
-              Encontre sua próxima distância e conheça
-              os desafios disponíveis.
+              Explore as opções de corrida e encontre uma meta que combine
+              com o seu momento.
             </p>
           </div>
 
@@ -178,7 +242,11 @@ export function HomePage() {
           </Link>
         </div>
 
-        {featured.length > 0 ? (
+        {challengesError ? (
+          <p className="glass-empty" role="alert">{challengesError}</p>
+        ) : challengesLoading ? (
+          <p className="glass-empty" role="status">Carregando desafios publicados...</p>
+        ) : featured.length > 0 ? (
           <div className="glass-challenge-grid">
             {featured.map((challenge) => (
               <div className="glass-challenge-wrap" key={challenge.id}>
@@ -188,8 +256,8 @@ export function HomePage() {
           </div>
         ) : (
           <div className="glass-empty">
-            <h3>Novos desafios estão a caminho.</h3>
-            <p>Consulte o catálogo para acompanhar as novidades.</p>
+            <h3>Nenhum desafio publicado no momento.</h3>
+            <p>Consulte o catálogo para acompanhar quando novos desafios estiverem disponíveis.</p>
             <Link to="/desafios" className="glass-outline">
               Consultar catálogo ↗
             </Link>
@@ -199,7 +267,7 @@ export function HomePage() {
 
       <RevealSection className="glass-how" id="como-funciona">
         <div className="glass-how-heading">
-          <span className="glass-section-label">02 / COMO FUNCIONA</span>
+          <span className="glass-section-label">03 / COMO FUNCIONAM OS DESAFIOS</span>
           <h2>
             Uma jornada.
             <br />
@@ -227,7 +295,7 @@ export function HomePage() {
       <RevealSection className="glass-statement">
         <div className="glass-statement-glow" aria-hidden="true" />
         <div className="glass-statement-copy">
-          <span className="glass-section-label">03 / CORRA DO SEU JEITO</span>
+          <span className="glass-section-label">04 / CORRA DO SEU JEITO</span>
           <h2>
             NÃO É SOBRE
             <br />
@@ -250,15 +318,34 @@ export function HomePage() {
         </div>
       </RevealSection>
 
+      <RevealSection className="glass-photo" id="fotografia">
+        <div className="glass-photo-panel">
+          <div className="glass-photo-art" aria-hidden="true">
+            <span className="glass-photo-lens" />
+            <span className="glass-photo-word">FOCO.</span>
+          </div>
+          <div className="glass-photo-copy">
+            <span className="glass-section-label">FOTOGRAFIA ESPORTIVA</span>
+            <h3>O esporte também vive nos instantes.</h3>
+            <p>
+              A fotografia esportiva segue como parte da ClicksportBR.
+              Estamos preparando um espaço para apresentar coberturas e
+              histórias registradas em eventos.
+            </p>
+            <span className="glass-coming">Galeria de fotografias em preparação</span>
+          </div>
+        </div>
+      </RevealSection>
+
       <RevealSection className="glass-final">
         <div className="glass-final-glow" aria-hidden="true" />
-        <span className="glass-section-label">O PRÓXIMO PASSO É SEU</span>
+        <span className="glass-section-label">SUA PRÓXIMA CONQUISTA</span>
         <h2>
-          Sua próxima linha de
+          Seu próximo passo
           <br />
-          <em>chegada começa aqui.</em>
+          <em>começa com uma meta.</em>
         </h2>
-        <p>Explore os desafios de corrida e encontre sua próxima meta.</p>
+        <p>Explore o catálogo de desafios virtuais de corrida.</p>
         <Link to="/desafios" className="glass-primary">
           Ver desafios disponíveis ↗
         </Link>

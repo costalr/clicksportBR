@@ -11,15 +11,16 @@
 - `src/App.tsx`: composição das rotas.
 - `src/pages/HomePage.tsx` e `src/pages/home.css`: landing e estilos.
 - `src/pages/AuthPage.tsx`: autenticação e retorno pós-login.
-- `src/pages/AdminDashboardPage.tsx`: avaliação administrativa.
+- `src/pages/AdminDashboardPage.tsx`: navegação do CMS e avaliação administrativa.
 - `src/features/auth/AuthGate.tsx`: proteção de rotas.
 - `src/features/challenges/ChallengeCard.tsx`: cartão de desafio.
-- `src/features/challenges/services/challengeService.ts`: acesso a dados demonstrativos.
+- `src/features/challenges/services/challengeService.ts`: consulta assíncrona de desafios publicados.
+- `src/features/admin/`: formulários e serviços administrativos para desafios, produtos e ofertas.
 - `src/styles/tokens.css`: temas.
 - `supabase/migrations/`: histórico versionado de alterações do banco.
 
 ## Integração de desafios
-O catálogo usa `listChallenges()` e dados demonstrativos. A migração para dados reais exige serviço assíncrono, estados loading/empty/error, permissões de publicação e validação de regras comerciais. Não tratar os desafios demo como ofertas pagas.
+O catálogo consulta `public.desafios` com `status='publicado'` e apresenta estados de carregamento, erro e vazio; `mockChallenges.ts` é mantido para testes. A migração `202610240017_admin_desafios.sql` adiciona políticas/grants de leitura administrativa, criação e atualização, sem exclusão. Ela está pendente de revisão e aplicação manual. O CMS não implementa checkout, pedidos, pagamentos, inscrições comerciais ou upload de imagens.
 
 ## Autorização
 A RPC `eh_administrador` identifica o perfil administrativo. A UI diferencia menus, mas a segurança exige validação **também no banco/RPC**, com RLS e permissões revisadas. Rotas privadas usam `AuthGate`.
