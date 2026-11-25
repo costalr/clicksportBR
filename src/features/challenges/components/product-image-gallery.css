@@ -1,0 +1,178 @@
+
+/* CLICKSPORTBR — GALERIA DE PRODUTOS */
+
+.pig-gallery {
+  width: 100%;
+  min-width: 0;
+}
+
+.pig-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--cd-border, rgba(145, 151, 169, .2));
+  border-radius: 22px;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 113, 60, .12),
+      transparent 72%
+    ),
+    rgba(125, 135, 155, .035);
+  cursor: zoom-in;
+}
+
+.pig-image {
+  display: block;
+  width: 96%;
+  height: 96%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 18px;
+  user-select: none;
+  transition: transform .25s ease;
+  will-change: transform;
+}
+
+.pig-zooming .pig-image {
+  transition: none;
+}
+
+.pig-zoom-hint {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 2;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 999px;
+  background: rgba(18, 20, 25, .8);
+  color: #fff;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.pig-thumbnails {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  overflow-x: auto;
+}
+
+.pig-thumbnail {
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+  padding: 4px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background: rgba(125, 135, 155, .08);
+  cursor: pointer;
+}
+
+.pig-thumbnail.pig-selected {
+  border-color: #ff713c;
+}
+
+.pig-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pig-empty {
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  min-height: 340px;
+  border: 1px dashed var(--cd-border, #888);
+  border-radius: 22px;
+  text-align: center;
+  color: var(--cd-muted, #999);
+}
+
+.pig-empty span {
+  color: #ff713c;
+  font-size: 48px;
+}
+
+/* Visualização ampliada */
+
+.pig-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, .88);
+}
+
+.pig-dialog {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(100%, 1100px);
+  max-height: 90dvh;
+}
+
+.pig-expanded-image {
+  display: block;
+  max-width: 100%;
+  max-height: 85dvh;
+  object-fit: contain;
+}
+
+.pig-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #171717;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Telas sensíveis ao toque */
+
+@media (hover: none) {
+  .pig-stage {
+    cursor: pointer;
+  }
+
+  .pig-zoom-hint {
+    font-size: 0;
+  }
+
+  .pig-zoom-hint::after {
+    content: 'Toque para ampliar';
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pig-stage {
+    border-radius: 16px;
+  }
+
+  .pig-thumbnail {
+    width: 62px;
+    height: 62px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pig-image {
+    transition: none;
+  }
+}

@@ -95,6 +95,58 @@ export async function saveProduct(input: ProductInput): Promise<void> {
   if (result.error) throw result.error
 }
 
+const PRODUCT_IMAGE_BUCKET = 'produtos'
+
+export function getProductImageUrl(path: string | null): string | null {
+  if (!path) return null
+
+  const { data } = supabase.storage
+    .from(PRODUCT_IMAGE_BUCKET)
+    .getPublicUrl(path)
+
+  return data.publicUrl
+}
+
+export async function uploadProductImage(file: File): Promise<string> {
+  const allowedTypes = ['image/jpeg', 'image/png', 'image/webp']
+  const maxSize = 5 * 1024 * 1024
+
+  if (!allowedTypes.includes(file.type)) {
+    throw new Error('Selecione uma imagem JPG, PNG ou WebP.')
+  }
+
+  if (file.size > maxSize) {
+    throw new Error('A imagem deve ter no máximo 5 MB.')
+  }
+
+  const extension = {
+    'image/jpeg': 'jpg',
+    'image/png': 'png',
+    'image/webp': 'webp',
+  }[file.type]
+
+  const path = `medalhas/${crypto.randomUUID()}.${extension}`
+
+  const { error } = await supabase.storage
+    .from(PRODUCT_IMAGE_BUCKET)
+    .upload(path, file, {
+      contentType: file.type,
+      upsert: false,
+    })
+
+  if (error) throw error
+
+  return path
+}
+
+export async function removeProductImage(path: string): Promise<void> {
+  const { error } = await supabase.storage
+    .from(PRODUCT_IMAGE_BUCKET)
+    .remove([path])
+
+  if (error) throw error
+}
+
 export async function listOffers(): Promise<Offer[]> {
   const { data, error } = await supabase
     .from('ofertas_desafio')

@@ -10,6 +10,7 @@ import { useTheme } from './hooks/useTheme'
 import { HomePage } from './pages/HomePage'
 import { ChallengesPage } from './pages/ChallengesPage'
 import { ChallengeDetailsPage } from './pages/ChallengeDetailsPage'
+import { AdminChallengePreviewPage } from './pages/AdminChallengePreviewPage'
 import './App.css'
 
 function App() {
@@ -35,6 +36,14 @@ function App() {
           <Route path="/redefinir-senha" element={<ResetPasswordPage />} />
           <Route path="/entrar" element={<AuthPage />} />
           <Route path="/admin" element={<AuthGate admin><AdminDashboardPage /></AuthGate>} />
+          <Route
+            path="/admin/preview/:slug"
+            element={
+              <AuthGate admin>
+                <AdminChallengePreviewPage />
+              </AuthGate>
+            }
+          />
           <Route path="/minha-area" element={<AuthGate><ParticipantDashboardPage /></AuthGate>} />
           <Route path="/" element={<HomePage />} />
           <Route path="/desafios" element={<ChallengesPage />} />

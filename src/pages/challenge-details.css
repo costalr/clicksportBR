@@ -700,3 +700,1005 @@
     transition: none;
   }
 }
+
+
+/* =========================================
+   CLICKSPORTBR — MEDALHAS E OFERTAS
+   ========================================= */
+
+/* Card de produtos */
+
+.cd-offers-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+}
+
+/* Área de destaque da medalha */
+
+.cd-medal-image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 300px;
+  padding: 16px;
+
+  border-radius: 18px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 99, 41, 0.10) 0%,
+    transparent 70%
+  );
+}
+
+/* Fotografia real */
+
+.cd-medal-image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 290px;
+  object-fit: contain;
+
+  border-radius: 12px;
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.cd-medal-image:hover {
+  transform: scale(1.045);
+  filter: brightness(1.07);
+}
+
+/* Nome da medalha */
+
+.cd-medal-name {
+  display: block;
+  max-width: 360px;
+  font-size: clamp(17px, 1.7vw, 22px);
+  line-height: 1.3;
+  font-weight: 800;
+}
+
+/* Card da oferta */
+
+.cd-offers-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Preço */
+
+.cd-offer-price-value {
+  display: block;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+}
+
+/* Responsividade */
+
+@media (max-width: 768px) {
+  .cd-medal-image-wrap {
+    min-height: 230px;
+    padding: 12px;
+  }
+
+  .cd-medal-image {
+    max-height: 240px;
+  }
+
+  .cd-medal-name {
+    font-size: 18px;
+  }
+
+  .cd-offer-price-value {
+    font-size: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cd-medal-image {
+    transition: none;
+  }
+
+  .cd-medal-image:hover {
+    transform: none;
+  }
+}
+
+/* Refinamento da apresentação das medalhas */
+
+.cd-medal-image-wrap {
+  width: 100%;
+  min-height: 340px;
+  padding: 8px;
+}
+
+.cd-medal-image {
+  width: auto;
+  height: 330px;
+  max-width: 100%;
+  max-height: 330px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.cd-medal-name {
+  display: block;
+  max-width: 100%;
+  margin-top: 4px;
+
+  font-size: clamp(16px, 1.5vw, 19px);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.2px;
+  text-wrap: balance;
+}
+
+.cd-offers-product {
+  gap: 8px;
+}
+
+.cd-offers-product p {
+  max-width: 380px;
+  margin-top: 2px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .cd-medal-image-wrap {
+    min-height: 260px;
+    padding: 8px;
+  }
+
+  .cd-medal-image {
+    height: 250px;
+    max-height: 250px;
+  }
+
+  .cd-medal-name {
+    font-size: 16px;
+  }
+}
+
+/* Galeria principal da medalha */
+/* Galeria da medalha no hero */
+
+.cd-hero-gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: clamp(24px, 6vw, 30px);
+}
+
+.cd-hero-gallery .pig-gallery {
+  width: 100%;
+  max-width: 600px;
+  max-height: 100%;
+}
+
+.cd-hero-gallery .pig-stage {
+  aspect-ratio: 4 / 5;
+  min-height: 0;
+  border-radius: 14px;
+}
+
+@media (max-width: 900px) {
+  .cd-hero-gallery {
+    padding: 20px;
+  }
+
+  .cd-hero-gallery .pig-gallery {
+    max-width: 440px;
+  }
+}
+
+.cd-hero-gallery .pig-stage {
+  border: none;
+  background: transparent;
+}
+
+.cd-hero-gallery .pig-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+/* HERO — DESAFIO COM GALERIA DE PRODUTO */
+
+.cd-hero.cd-hero-product {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "gallery heading"
+    "gallery details";
+  align-items: start;
+  gap: 0 clamp(28px, 4vw, 72px);
+  min-height: 0;
+  padding: clamp(24px, 3vw, 48px);
+}
+
+.cd-hero-product .cd-hero-heading {
+  grid-area: heading;
+  min-width: 0;
+}
+
+.cd-hero-product .cd-hero-heading h1 {
+  margin: 24px 0 18px;
+  font-size: clamp(34px, 3.6vw, 62px);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+
+.cd-hero-product .cd-hero-gallery {
+  grid-area: gallery;
+  align-self: center;
+  padding: 0;
+}
+
+.cd-hero-product .cd-hero-gallery .pig-gallery {
+  width: 100%;
+  max-width: 560px;
+}
+
+.cd-hero-product .cd-hero-details {
+  grid-area: details;
+  min-width: 0;
+}
+
+.cd-hero-product .cd-lead {
+  margin: 0 0 12px;
+  font-size: clamp(18px, 1.7vw, 24px);
+}
+
+.cd-hero-product .cd-description {
+  margin: 0 0 24px;
+}
+
+.cd-hero-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cd-hero-facts > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid var(--cd-border);
+  border-radius: 16px;
+}
+
+.cd-hero-facts span,
+.cd-hero-price-label {
+  color: var(--cd-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.cd-hero-facts strong {
+  color: var(--cd-text);
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1;
+}
+
+.cd-hero-facts small {
+  font-size: 14px;
+}
+
+.cd-hero-purchase {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--cd-border);
+}
+
+.cd-hero-offer-name {
+  margin: 0;
+  color: var(--cd-text);
+  font-weight: 700;
+}
+
+.cd-hero-price {
+  color: var(--cd-text);
+  font-size: clamp(32px, 3vw, 46px);
+  line-height: 1.1;
+}
+
+.cd-hero-purchase .cd-disabled-action {
+  width: 100%;
+  min-height: 52px;
+}
+
+.cd-hero-offers-link,
+.cd-hero-about-link {
+  color: var(--cd-orange);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cd-hero-about-link {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+/* CELULAR */
+
+@media (max-width: 900px) {
+  .cd-hero.cd-hero-product {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "heading"
+      "gallery"
+      "details";
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .cd-hero-product .cd-hero-heading h1 {
+    font-size: clamp(34px, 7vw, 52px);
+  }
+
+  .cd-hero-product .cd-hero-gallery {
+    width: 100%;
+    justify-self: center;
+  }
+
+  .cd-hero-product .cd-hero-gallery .pig-gallery {
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cd-hero.cd-hero-product {
+    padding: 18px;
+    gap: 20px;
+  }
+
+  .cd-hero-product .cd-hero-heading h1 {
+    font-size: clamp(32px, 9vw, 44px);
+  }
+
+  .cd-hero-facts > div {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cd-hero-product .cd-hero-gallery .pig-stage {
+    aspect-ratio: 4 / 4.5;
+  }
+
+  .cd-hero-product .cd-hero-gallery {
+    padding: 0;
+  }
+}
+
+/* Refinamento editorial do hero */
+
+.cd-hero-product .cd-hero-heading h1 {
+  max-width: 620px;
+  margin: 18px 0 26px;
+  font-size: clamp(36px, 3.4vw, 58px);
+  line-height: 1.06;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+.cd-hero-product .cd-hero-offer-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cd-muted);
+}
+
+.cd-hero-product .cd-hero-price {
+  display: block;
+  font-size: clamp(38px, 4vw, 54px);
+  font-weight: 850;
+  letter-spacing: -0.055em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.cd-hero-product .cd-hero-purchase {
+  gap: 16px;
+  padding-top: 24px;
+}
+
+.cd-hero-product .cd-hero-about-link {
+  font-size: 13px;
+  letter-spacing: .01em;
+}
+
+@media (max-width: 600px) {
+  .cd-hero-product .cd-hero-heading h1 {
+    margin: 16px 0 8px;
+    font-size: clamp(30px, 8vw, 38px);
+    line-height: 1.08;
+    letter-spacing: -0.05em;
+  }
+
+  .cd-hero-product .cd-hero-purchase {
+    gap: 12px;
+    padding-top: 18px;
+  }
+
+  .cd-hero-product .cd-hero-price {
+    font-size: 42px;
+  }
+}
+
+/* Identidade tipográfica ClicksportBR */
+
+.cd-hero-product .cd-display-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 20px 0 28px;
+}
+
+.cd-display-title-name {
+  display: block;
+  max-width: 620px;
+  color: var(--cd-text);
+  font-size: clamp(30px, 3.2vw, 54px);
+  font-weight: 850;
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+.cd-display-title-distance {
+  display: block;
+  color: var(--cd-orange);
+  font-size: clamp(70px, 8vw, 124px);
+  font-weight: 950;
+  line-height: .9;
+  letter-spacing: -.085em;
+  white-space: nowrap;
+}
+
+.cd-display-title-distance em {
+  font-style: italic;
+  font-weight: 750;
+  letter-spacing: -.07em;
+}
+
+@media (max-width: 600px) {
+  .cd-hero-product .cd-display-title {
+    gap: 12px;
+    margin: 16px 0 10px;
+  }
+
+  .cd-display-title-name {
+    font-size: clamp(28px, 8vw, 36px);
+  }
+
+  .cd-display-title-distance {
+    font-size: clamp(68px, 18vw, 94px);
+  }
+}
+
+.cd-section-display span {
+  display: block;
+  color: var(--cd-orange);
+  font-style: italic;
+}
+
+.cd-about .cd-section-display {
+  font-weight: 850;
+  letter-spacing: -.055em;
+  line-height: 1.05;
+}
+
+/* =========================================
+   CLICKSPORTBR — REFINAMENTO COMERCIAL
+   ========================================= */
+
+.cd-hero-product .cd-fact-modality {
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 800;
+  text-transform: capitalize;
+  letter-spacing: -0.035em;
+}
+
+.cd-hero-product .cd-hero-purchase {
+  gap: 12px;
+  padding-top: 22px;
+}
+
+.cd-purchase-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cd-purchase-kicker {
+  color: var(--cd-orange);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: .15em;
+}
+
+.cd-purchase-availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--cd-muted);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.cd-availability-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cd-orange);
+  opacity: .8;
+}
+
+.cd-hero-product .cd-hero-offer-name {
+  margin: 2px 0 0;
+  color: var(--cd-muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cd-purchase-price-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cd-purchase-price-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cd-hero-product .cd-hero-price {
+  font-size: clamp(38px, 4vw, 54px);
+  font-weight: 900;
+  letter-spacing: -.06em;
+  line-height: 1;
+}
+
+.cd-purchase-unit {
+  color: var(--cd-orange);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.cd-purchase-empty {
+  color: var(--cd-muted);
+}
+
+.cd-hero-product .cd-purchase-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.cd-purchase-button svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .cd-hero-product .cd-hero-purchase {
+    gap: 14px;
+  }
+
+  .cd-hero-product .cd-hero-price {
+    font-size: clamp(38px, 11vw, 48px);
+  }
+
+  .cd-hero-product .cd-fact-modality {
+    font-size: 23px;
+  }
+
+  .cd-purchase-kicker {
+    font-size: 10px;
+  }
+
+  .cd-purchase-availability {
+    font-size: 11px;
+  }
+}
+
+/* Galeria maior no desktop */
+
+@media (min-width: 901px) {
+  .cd-hero-product .cd-hero-gallery {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cd-hero-product .cd-hero-gallery .pig-gallery {
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .cd-hero-product .cd-hero-gallery .pig-stage {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+  }
+}
+
+/* Descrição completa do desafio */
+
+.cd-about-description {
+  grid-column: 2;
+  min-width: 0;
+  max-width: 850px;
+  color: var(--cd-muted);
+  font-size: 15px;
+  line-height: 1.85;
+  overflow-wrap: break-word;
+}
+
+.cd-about-description h1,
+.cd-about-description h2,
+.cd-about-description h3 {
+  color: var(--cd-text);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+
+.cd-about-description h1 {
+  margin: 0 0 24px;
+  font-size: clamp(24px, 2.5vw, 36px);
+}
+
+.cd-about-description h2 {
+  margin: 38px 0 16px;
+  font-size: clamp(21px, 2vw, 28px);
+}
+
+.cd-about-description h3 {
+  margin: 28px 0 12px;
+  font-size: 20px;
+}
+
+.cd-about-description p {
+  margin: 0 0 20px;
+}
+
+.cd-about-description strong {
+  color: var(--cd-text);
+  font-weight: 800;
+}
+
+.cd-about-description ul,
+.cd-about-description ol {
+  margin: 12px 0 24px;
+  padding-left: 24px;
+}
+
+.cd-about-description li {
+  margin-bottom: 8px;
+}
+
+.cd-about-description li::marker {
+  color: var(--cd-orange);
+}
+
+@media (max-width: 600px) {
+  .cd-about-description {
+    grid-column: 1;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+}
+.cd-about {
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 24px;
+}
+
+.cd-about .cd-section-label,
+.cd-about h2,
+.cd-about-description {
+  grid-column: 1;
+}
+
+.cd-about-description {
+  max-width: 900px;
+}
+
+/* =========================================
+   CLICKSPORTBR — DESCRIÇÃO EDITORIAL
+========================================= */
+
+.cd-about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+
+.cd-about .cd-section-label,
+.cd-about > h2,
+.cd-about-description {
+  grid-column: 1;
+}
+
+.cd-about-description {
+  width: 100%;
+  max-width: 1100px;
+  margin-top: 16px;
+  color: var(--cd-muted);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* Título da descrição */
+
+.cd-about-description .cd-editorial-title {
+  position: relative;
+  max-width: 800px;
+  margin: 0 0 34px;
+  padding-bottom: 24px;
+  color: var(--cd-text);
+  font-size: clamp(28px, 3.2vw, 48px);
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: -0.05em;
+}
+
+.cd-editorial-title::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 76px;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--cd-orange);
+  content: "";
+}
+
+/* Parágrafos */
+
+.cd-about-description p {
+  max-width: 820px;
+  margin: 0 0 24px;
+  line-height: 1.9;
+}
+
+.cd-about-description strong {
+  color: var(--cd-text);
+  font-weight: 800;
+}
+
+/* Subtítulos */
+
+.cd-about-description .cd-editorial-heading {
+  max-width: 850px;
+  margin: 48px 0 22px;
+  color: var(--cd-text);
+  font-size: clamp(22px, 2.5vw, 34px);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+/* Destaque da seção da medalha */
+
+.cd-editorial-heading:has(+ p) {
+  scroll-margin-top: 90px;
+}
+
+/* Lista de informações */
+
+.cd-about-description .cd-editorial-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 900px;
+  margin: 24px 0 42px;
+  padding: 0;
+  list-style: none;
+}
+
+.cd-editorial-list li {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  padding: 20px 22px;
+  border: 1px solid var(--cd-border);
+  border-radius: 16px;
+  background: rgba(125, 135, 155, 0.045);
+  line-height: 1.6;
+  transition:
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.cd-editorial-list li:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 113, 60, .35);
+}
+
+.cd-editorial-list li strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--cd-orange);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: .035em;
+}
+
+/* Ajustes mobile */
+
+@media (max-width: 600px) {
+  .cd-about-description {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .cd-about-description .cd-editorial-title {
+    font-size: 27px;
+    margin-bottom: 28px;
+  }
+
+  .cd-about-description .cd-editorial-heading {
+    margin-top: 36px;
+    font-size: 23px;
+  }
+
+  .cd-about-description .cd-editorial-list {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .cd-editorial-list li {
+    padding: 16px 18px;
+  }
+}
+
+.cd-about-description blockquote {
+  max-width: 900px;
+  margin: 42px 0;
+  padding: clamp(24px, 3vw, 40px);
+  border: 1px solid rgba(255, 113, 60, 0.25);
+  border-left: 5px solid var(--cd-orange);
+  border-radius: 0 20px 20px 0;
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      rgba(255, 113, 60, 0.12),
+      transparent 65%
+    ),
+    rgba(125, 135, 155, 0.04);
+}
+
+.cd-about-description blockquote h3 {
+  margin: 0 0 16px;
+  color: var(--cd-text);
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+.cd-about-description blockquote p {
+  margin: 0;
+  max-width: 680px;
+}
+
+@media (max-width: 600px) {
+  .cd-about-description blockquote {
+    margin: 32px 0;
+    padding: 22px 18px;
+  }
+}
+
+/* =========================================
+   SOBRE O DESAFIO — AJUSTE DE PROPORÇÕES
+========================================= */
+
+.cd-about {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+
+.cd-about-description {
+  width: 100%;
+  max-width: none;
+  margin-top: 12px;
+}
+
+.cd-about-description p {
+  max-width: 900px;
+}
+
+.cd-about-description .cd-editorial-title {
+  max-width: 900px;
+}
+
+.cd-about-description .cd-editorial-list {
+  max-width: 100%;
+}
+
+.cd-about-description blockquote {
+  max-width: 100%;
+}
+
+.cd-about-description blockquote {
+  width: 100%;
+  box-sizing: border-box;
+  padding: clamp(28px, 4vw, 48px);
+  border-left: 5px solid var(--cd-orange);
+  border-radius: 0 22px 22px 0;
+}
+
+.cd-about-description blockquote h3 {
+  font-size: clamp(24px, 2.6vw, 36px);
+  max-width: 850px;
+}
+
+.cd-about-description blockquote p {
+  max-width: 850px;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .cd-about {
+    max-width: 100%;
+    gap: 18px;
+  }
+
+  .cd-about-description {
+    margin-top: 4px;
+  }
+
+  .cd-about-description blockquote {
+    padding: 24px 20px;
+    border-radius: 0 16px 16px 0;
+  }
+
+  .cd-about-description blockquote h3 {
+    font-size: 22px;
+  }
+
+  .cd-about-description blockquote p {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 901px) {
+  .cd-about {
+    max-width: 1200px;
+  }
+
+  .cd-about-description p {
+    font-size: 16px;
+    line-height: 1.85;
+  }
+}

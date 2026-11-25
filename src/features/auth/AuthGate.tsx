@@ -19,11 +19,10 @@ export function AuthGate({ children, admin = false }: AuthGateProps) {
 
     async function verify(nextUser: User | null) {
       if (!active) return
-      setLoading(true)
       setUser(nextUser)
-      setAuthorized(false)
 
-      if (!nextUser) {
+     if (!nextUser) {
+        setAuthorized(false)
         setLoading(false)
         return
       }
@@ -45,9 +44,19 @@ export function AuthGate({ children, admin = false }: AuthGateProps) {
       void verify(data.user)
     })
 
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        // Evita chamadas assíncronas ao Supabase dentro do callback.
+      const { data: listener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        // A renovação do token não exige desmontar o painel.
+        if (event === 'TOKEN_REFRESHED') {
+          return
+        }
+
+        // A sessão inicial já é verificada por getUser().
+        if (event === 'INITIAL_SESSION') {
+          return
+        }
+
+        // Mantém a verificação em mudanças relevantes de autenticação.
         setTimeout(() => {
           if (active) void verify(session?.user ?? null)
         }, 0)

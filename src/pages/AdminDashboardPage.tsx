@@ -5,6 +5,7 @@ import { AdminOffersPanel } from '../features/admin/AdminOffersPanel'
 import { AdminProductsPanel } from '../features/admin/AdminProductsPanel'
 import { AdminOverviewPanel } from '../features/admin/AdminOverviewPanel'
 import './admin-dashboard.css'
+import { useSearchParams } from 'react-router-dom'
 
 type Status = 'pendente' | 'em_analise' | 'aprovado' | 'rejeitado'
 type Decision = 'aprovado' | 'rejeitado'
@@ -596,7 +597,21 @@ const adminSections: { id: AdminSection; label: string }[] = [
 ]
 
 export function AdminDashboardPage() {
-  const [section, setSection] = useState<AdminSection>('overview')
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const requestedSection = searchParams.get('secao')
+
+  const section: AdminSection = adminSections.some(
+    (item) => item.id === requestedSection
+  )
+    ? requestedSection as AdminSection
+    : 'overview'
+
+  function setSection(next: AdminSection) {
+    setSearchParams(
+      next === 'overview' ? {} : { secao: next }
+    )
+  }
 
   return (
     <div className="admin-shell">
@@ -619,11 +634,25 @@ export function AdminDashboardPage() {
           ))}
         </nav>
       </header>
-      {section === 'overview' && <AdminOverviewPanel onNavigate={(next) => setSection(next)} />}
-      {section === 'challenges' && <AdminChallengesPanel />}
-      {section === 'products' && <AdminProductsPanel />}
-      {section === 'offers' && <AdminOffersPanel />}
-      {section === 'evidence' && <ProofReviewPanel />}
+      <div hidden={section !== 'overview'}>
+    <AdminOverviewPanel onNavigate={(next) => setSection(next)} />
+    </div>
+
+    <div hidden={section !== 'challenges'}>
+      <AdminChallengesPanel />
+    </div>
+
+    <div hidden={section !== 'products'}>
+      <AdminProductsPanel />
+    </div>
+
+    <div hidden={section !== 'offers'}>
+      <AdminOffersPanel />
+    </div>
+
+    <div hidden={section !== 'evidence'}>
+      <ProofReviewPanel />
+    </div>
     </div>
   )
 }

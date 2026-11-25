@@ -1,0 +1,267 @@
+
+/* =========================================
+   CLICKSPORTBR — ADMIN CHALLENGE PREVIEW
+   ========================================= */
+
+/* Layout principal */
+
+.admin-preview-toolbar {
+  box-sizing: border-box;
+  width: calc(100% - 60px);
+  max-width: none;
+  margin: 16px auto 8px;
+  padding: 14px 20px;
+
+  border: 1px solid #e1e4ea;
+  border-radius: 18px;
+
+  background: linear-gradient(
+    115deg,
+    #ffffff 0%,
+    #f5f6f9 65%,
+    #fff1eb 100%
+  );
+
+  color: #20232c;
+}
+
+/* Cabeçalho */
+
+.admin-preview-toolbar-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-preview-icon {
+  display: grid;
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+
+  border-radius: 12px;
+  background: rgba(255, 86, 25, 0.12);
+  color: #ff652e;
+  font-size: 19px;
+}
+
+.admin-preview-heading {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-preview-eyebrow {
+  display: block;
+  margin-bottom: 5px;
+
+  color: #e85a27;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.admin-preview-heading h2 {
+  margin: 0;
+  color: inherit;
+  font-size: clamp(15px, 2vw, 19px);
+  line-height: 1.3;
+}
+
+/* Status */
+
+.admin-preview-status {
+  padding: 7px 12px;
+
+  border: 1px solid #dce0e7;
+  border-radius: 999px;
+
+  background: rgba(32, 35, 44, 0.04);
+
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.admin-preview-status[data-status="rascunho"] {
+  color: #a85a14;
+  border-color: #e7b780;
+}
+
+.admin-preview-status[data-status="publicado"] {
+  color: #16784c;
+  border-color: #a4d8bb;
+}
+
+.admin-preview-status[data-status="encerrado"] {
+  color: #69717f;
+}
+
+/* Rodapé da barra */
+
+.admin-preview-toolbar-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 10px;
+  padding-top: 10px;
+
+  border-top: 1px solid #e1e4ea;
+}
+
+.admin-preview-note {
+  margin: 0;
+  color: #687182;
+  font-size: 12px;
+}
+
+/* Botão de retorno */
+
+.admin-preview-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 10px 14px;
+
+  border: 1px solid #dce0e7;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #20232c;
+
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.admin-preview-back:hover {
+  background: #fff0e9;
+  border-color: #ff8b61;
+}
+
+/* =========================================
+   TEMA ESCURO
+   ========================================= */
+
+:is(
+  html[data-theme="dark"],
+  html[data-theme="escuro"],
+  body[data-theme="dark"],
+  body[data-theme="escuro"],
+  .dark
+) .admin-preview-toolbar {
+  background: linear-gradient(
+    115deg,
+    #252a33 0%,
+    #1c2028 65%,
+    #29211f 100%
+  );
+
+  color: #f8f8f8;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+:is(
+  html[data-theme="dark"],
+  html[data-theme="escuro"],
+  body[data-theme="dark"],
+  body[data-theme="escuro"],
+  .dark
+) .admin-preview-toolbar-bottom {
+  border-top-color: rgba(255, 255, 255, 0.09);
+}
+
+:is(
+  html[data-theme="dark"],
+  html[data-theme="escuro"],
+  body[data-theme="dark"],
+  body[data-theme="escuro"],
+  .dark
+) .admin-preview-note {
+  color: #aeb4bf;
+}
+
+:is(
+  html[data-theme="dark"],
+  html[data-theme="escuro"],
+  body[data-theme="dark"],
+  body[data-theme="escuro"],
+  .dark
+) .admin-preview-back {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+:is(
+  html[data-theme="dark"],
+  html[data-theme="escuro"],
+  body[data-theme="dark"],
+  body[data-theme="escuro"],
+  .dark
+) .admin-preview-status {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+:is(
+  html[data-theme="dark"],
+  html[data-theme="escuro"],
+  body[data-theme="dark"],
+  body[data-theme="escuro"],
+  .dark
+) .admin-preview-status[data-status="rascunho"] {
+  color: #ffbc7a;
+  border-color: rgba(255, 188, 122, 0.3);
+}
+
+:is(
+  html[data-theme="dark"],
+  html[data-theme="escuro"],
+  body[data-theme="dark"],
+  body[data-theme="escuro"],
+  .dark
+) .admin-preview-status[data-status="publicado"] {
+  color: #7ee0ad;
+  border-color: rgba(126, 224, 173, 0.3);
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 640px) {
+  .admin-preview-toolbar {
+    width: calc(100% - 32px);
+    margin: 12px auto 8px;
+    padding: 16px;
+  }
+
+  .admin-preview-toolbar-top {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .admin-preview-status {
+    margin-left: 50px;
+  }
+
+  .admin-preview-toolbar-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-preview-back {
+    box-sizing: border-box;
+    width: 100%;
+  }
+}

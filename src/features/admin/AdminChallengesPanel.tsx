@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState, type FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import {
   listAdminChallenges,
   saveChallenge,
@@ -176,7 +177,24 @@ export function AdminChallengesPanel() {
                 <strong>{item.titulo}</strong>
                 <span>{item.slug} · {item.distancia_km} km · {item.duracao_dias} dias · {item.status}</span>
               </div>
-              <button type="button" className="admin-refresh" onClick={() => startEdit(item)}>Editar</button>
+              <div className="admin-form-actions">
+              <button
+                type="button"
+                className="admin-refresh"
+                onClick={() => startEdit(item)}
+              >
+                Editar
+              </button>
+
+              <Link
+                to={`/admin/preview/${encodeURIComponent(item.slug)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="admin-refresh"
+              >
+                Pré-visualizar ↗
+              </Link>
+            </div>
             </article>
           ))}
         <p className="admin-disclaimer">Desafios com inscrições associadas não podem ser excluídos. Esta versão não oferece exclusão.</p>
